@@ -1,0 +1,29 @@
+﻿@page "/Packages"
+@inject NavigationManager NavigationManager
+
+<h3>Packages</h3>
+
+<h5><button class="btn btn-primary" @onclick="Index">Home</button> <button class="btn btn-primary" @onclick="Car">Car</button> <button class="btn btn-primary" @onclick="flights">flights</button> <button class="btn btn-primary" @onclick="traveltip">travel tip</button></h5>
+
+<body>
+
+</body>
+
+@code {
+    private void Index(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("/");
+    }
+    private void flights(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("/Flights");
+    }
+    private void traveltip(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("/TravelTip");
+    }
+    private void Car(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Car");
+    }
+}

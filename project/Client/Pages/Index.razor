@@ -1,7 +1,38 @@
 ﻿@page "/"
+@inject NavigationManager NavigationManager
 
-<h1>travelio</h1>
+<h1>Travelio</h1>
 
-Welcome to travelio.
+<h3>home</h3>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<h5><button class="btn btn-primary" @onclick="Car">Car</button> <button class="btn btn-primary" @onclick="flights">flights</button> <button class="btn btn-primary" @onclick="Packages">Packages</button>  <button class="btn btn-primary" @onclick="traveltip">travel tip</button></h5>
+
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>image of the driver</th>
+                <th>reviews</th>
+            </tr>
+        </thead>
+    </table>
+</body>
+@code {
+    private void flights(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Flights");
+    }
+    private void traveltip(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("TravelTip");
+    }
+    private void Car(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Car");
+    }
+    private void Packages(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Packages");
+    }
+}
+

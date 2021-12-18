@@ -1,0 +1,69 @@
+﻿@page "/Flights"
+@inject NavigationManager NavigationManager
+
+<h3>Flights</h3>
+
+<h5><button class="btn btn-primary" @onclick="Index">Home</button> <button class="btn btn-primary" @onclick="Car">Car</button> <button class="btn btn-primary" @onclick="Packages">Packages</button> <button class="btn btn-primary" @onclick="traveltip">travel tip</button></h5>
+
+<body>
+    <div class="row">
+        <div class="row-md-4">
+            <br>
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Destination">Leaving Form</label>
+                <input asp-for="Input.Destination" class="form-control" />
+                <span asp-validation-for="Input.Destination" class="text-danger"></span>
+            </div>
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Destination">Going To</label>
+                <input asp-for="Input.Destination" class="form-control" />
+                <span asp-validation-for="Input.Destination" class="text-danger"></span>
+            </div>
+
+            <br>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Departing">Departing</label>
+                <input asp-for="Input.Departing" class="form-control" />
+                <span asp-validation-for="Input.Departing" class="text-danger"></span>
+            </div>
+
+            <br>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Returning">Returning</label>
+                <input asp-for="Input.Returning" class="form-control" />
+                <span asp-validation-for="Input.Returning" class="text-danger"></span>
+            </div>
+
+            <button class="btn btn-primary" @onclick="Payment">Payment</button>
+        </div>
+    </div>
+</body>
+
+@code {
+    private void Index(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("/");
+    }
+    private void traveltip(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("/TravelTip");
+    }
+    private void Car(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Car");
+    }
+    private void Packages(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Packages");
+    }
+    private void Payment(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Payment");
+    }
+}
