@@ -1,4 +1,4 @@
-﻿@page "/Packages"
+﻿@page "/CarMenu"
 @inject NavigationManager NavigationManager
 
     <div id="test" class="carousel slide" data-bs-ride="carousel">
@@ -34,22 +34,28 @@
     </div>
 
 
-    <h3>Packages</h3>
+    <h1>Travelio</h1>
 
-    <h5><button class="btn btn-primary" @onclick="Index">Home</button> <button class="btn btn-primary" @onclick="Car">Car</button> <button class="btn btn-primary" @onclick="flights">flights</button> <button class="btn btn-primary" @onclick="traveltip">travel tip</button></h5>
+    <h3>Car</h3>
+
+    <h5><button class="btn btn-primary" @onclick="home">Home</button> <button class="btn btn-primary" @onclick="flights">flights</button> <button class="btn btn-primary" @onclick="traveltip">travel tip</button></h5>
 
     <body>
+
+
+
+
         <section id="Car models">
             <div class="container m-5">
-                <h1 class="text-center my-5">Our Recommended Packages</h1>
+                <h1 class="text-center my-5">Our Recommended Cars</h1>
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="card" style="width: 18rem;">
-                            <img src="/Images/Car/Audi A5 Sportback.jpg" class="card-img-top" alt="...">
+                            <img src="/Images/Car/Chevrolet Impala.png" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="Audi A5">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <h5 class="Chevrolet Impala">Chevrolet Impala</h5>
+                                <p class="card-text">Are you looking for a luxurious ride for your family? This car has 5 seats and 5 baggage compartments.</p>
+                                <a href="#" class="btn btn-primary">Book Now</a>
                             </div>
                         </div>
 
@@ -57,11 +63,11 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="card" style="width: 18rem;">
-                            <img src="/Images/Car/Audi A5 Sportback.jpg" class="card-img-top" alt="...">
+                            <img src="/Images/Car/Mercedes Benz S Class.png" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="Audi A5">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <h5 class="Mercedes Benz S Class">Mercedes Benz S Class</h5>
+                                <p class="card-text">Are you hoping for a classy ride? There are 5 seats and 4 luggage compartments in this car.            </p>
+                                <a href="#" class="btn btn-primary">Book Now</a>
                             </div>
                         </div>
 
@@ -69,11 +75,11 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="card" style="width: 18rem;">
-                            <img src="/Images/Car/Audi A5 Sportback.jpg" class="card-img-top" alt="...">
+                            <img src="/Images/Car/Mitsubishi Mirage.png" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="Audi A5">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <h5 class="Mitsubishi Mirage">Mitsubishi Mirage</h5>
+                                <p class="card-text">Are you seeking for a reasonably priced but comfy ride? There are 4 seats and 2 luggage compartments in this car.</p>
+                                <a href="#" class="btn btn-primary">Book Now</a>
                             </div>
                         </div>
 
@@ -82,25 +88,26 @@
                 </div>
 
             </div>
-
+       
         </section>
+
     </body>
 
     @code {
-        private void Index(MouseEventArgs e)
+        private void home(MouseEventArgs e)
         {
             NavigationManager.NavigateTo("/");
         }
-        private void flights(MouseEventArgs e)
+        void flights(MouseEventArgs e)
         {
-            NavigationManager.NavigateTo("/Flights");
+            NavigationManager.NavigateTo("Flights");
         }
-        private void traveltip(MouseEventArgs e)
+        void traveltip(MouseEventArgs e)
         {
-            NavigationManager.NavigateTo("/TravelTip");
+            NavigationManager.NavigateTo("TravelTip");
         }
-        private void Car(MouseEventArgs e)
+        void typeofcar(MouseEventArgs e)
         {
-            NavigationManager.NavigateTo("Car");
+            NavigationManager.NavigateTo("TypeOfCars");
         }
     }
