@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace project.Shared.Domain
 {
-    public class Booking : BaseDomainModel
+    public class Transport : BaseDomainModel
     {
-        public double Price { get; set; }
+        public int AmountOfTransport { get; set; }
+        public virtual TypeOfVehicles TypeOfVehicles {get;set;}
     }
 }

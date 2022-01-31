@@ -1,138 +1,30 @@
 ﻿@page "/Payment"
 @inject NavigationManager NavigationManager
-@inject HttpClient _client
-@inject IJSRuntime js
-@attribute [Authorize]
 
 <h3>Payment</h3>
 
 <h5>The Bookings</h5>
 
-<p>Vehicles Booking</p>
-
-@if (bookingDetails == null)
-{
-    <div class="alert alert-info">Loading Vehicles...</div>
-}
-
-else
-{
-    <table class="table table-responsive">
+<body>
+    <table class="table">
         <thead>
             <tr>
-                <th>Type Of Vehicles</th>
-                <th>Price</th>
-                <th>Destination</th>
-                <th>Address</th>
-                <th>Passenger</th>
-                <th>luggage</th>
-                <th>Time</th>
-                <th>Date</th>
+                <th>Booking destination</th>
+                <th>Booking departing Date</th>
+                <th>Booking departing time</th>
+                <th>Booking return date</th>
+                <th>Booking return time</th>
+                <th>Booking details</th>
+                <th>Booking price</th>
             </tr>
         </thead>
-        <tbody>
-            @foreach (var bDetails in bookingDetails)
-            {
-            <tr>
-                <td>@bDetails.TypeOfVehicle</td>
-                <td>@bDetails.Price</td>
-                <td>@bDetails.Destination</td>
-                <td>@bDetails.Address</td>
-                <td>@bDetails.Passenger</td>
-                <td>@bDetails.luggage</td>
-                <td>@bDetails.Time </td>
-                <td>@bDetails.Date.ToString("dd MMMM yyyy")</td>
-
-                <td>
-                    <a href="/vehicles/view/@bDetails.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete_2(bDetails.Id))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
-            </tr>
-            }
-        </tbody>
     </table>
-}
-<p>Flight Booking</p>
+    <button class="btn btn-primary" @onclick="BackCars">Back to type of cars</button>
+    <button class="btn btn-primary" @onclick="BackFlights">Back to Flights</button>
+</body>
 
-@if (booking == null)
-{
-    <div class="alert alert-info">Loading Vehicles...</div>
-}
-
-else
-{
-   <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>LeavingFrom</th>
-                <th>GoingTo</th>
-                <th>Passenger</th>
-                <th>Price</th>
-                <th>Time</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var bookings in booking)
-            {
-            <tr>
-                <td>@bookings.LeavingFrom</td>
-                <td>@bookings.GoingTo</td>
-                <td>@bookings.Passenger</td>
-                <td>@bookings.Price</td>
-                <td>@bookings.Departing.ToString("dd MMMM yyyy")</td>
-                <td>@bookings.Returning.ToString("dd MMMM yyyy")</td>
-
-
-                <td>
-                    <a href="/vehicles/view/@bookings.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(bookings.Id))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-}
 
 @code {
-    private List<BookingDetails> bookingDetails;
-
-    private List<Booking> booking;
-
-    protected async override Task OnInitializedAsync()
-    {
-        bookingDetails = await _client.GetFromJsonAsync<List<BookingDetails>>($"{Endpoints.BookingdetailEndpoint}");
-        booking = await _client.GetFromJsonAsync<List<Booking>>($"{Endpoints.BookingEndpoint}");
-    }
-
-    async Task Delete(int bookingId)
-    {
-        var bookings = booking.First(q => q.Id == bookingId);
-        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {bookings.Id}? ");
-        if (confirm)
-        {
-            await _client.DeleteAsync($"{Endpoints.BookingEndpoint}/{bookingId}");
-            await OnInitializedAsync();
-        }
-    }
-    async Task Delete_2(int bookingdetailId)
-    { 
-        var bDetails = bookingDetails.First(q => q.Id == bookingdetailId);
-        var confirms = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {bDetails.Id}? ");
-        if (confirms)
-        {
-            await _client.DeleteAsync($"{Endpoints.BookingdetailEndpoint}/{bookingdetailId}");
-            await OnInitializedAsync();
-        }
-    }
     void BackCars(MouseEventArgs e)
     {
         NavigationManager.NavigateTo("TypeOfCars");

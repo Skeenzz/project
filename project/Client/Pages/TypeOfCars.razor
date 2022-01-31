@@ -1,0 +1,31 @@
+﻿@page "/TypeOfCars"
+@inject NavigationManager NavigationManager
+
+<h3>TypeOfCars</h3>
+
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Car Type</th>
+                <th>amount of people can fit</th>
+                <th>capacity for luggages</th>
+                <th>Special features</th>
+                <th>details of the car</th>
+                <th>notes</th>
+            </tr>
+        </thead>
+    </table>
+    <button class="btn btn-primary" @onclick="Car">Back</button>
+    <button class="btn btn-primary" @onclick="Payment">Payment</button>
+</body>
+@code {
+    private void Car(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Car");
+    }
+    private void Payment(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Payment");
+    }
+}

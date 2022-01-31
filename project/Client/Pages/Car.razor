@@ -1,4 +1,4 @@
-﻿@page "/CarMenu"
+﻿@page "/Car"
 @inject NavigationManager NavigationManager
 
     <div id="test" class="carousel slide" data-bs-ride="carousel">
@@ -34,7 +34,9 @@
     </div>
 
 
+
     <h1>Travelio</h1>
+
 
     <h3>Car</h3>
 
@@ -42,8 +44,53 @@
 
     <body>
 
+        <select name="Number of Passengers">
+            <option value="">Select number of passengers</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
 
 
+        <div class="row">
+            <div class="row-md-4">
+                <br>
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Pickup">Pick-up</label>
+                    <input asp-for="Input.Pickup" class="form-control" />
+                    <span asp-validation-for="Input.Pickup" class="text-danger"></span>
+                </div>
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Dropoff">Drop-off</label>
+                    <input asp-for="Input.Dropoff" class="form-control" />
+                    <span asp-validation-for="Input.Dropoff" class="text-danger"></span>
+                </div>
+
+                <br>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.PickUpTime">Pick-Up Time</label>
+                    <input asp-for="Input.PickUpTime" class="form-control" />
+                    <span asp-validation-for="Input.PickUpTime" class="text-danger"></span>
+                </div>
+
+                <br>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.DropOffTime">Drop-Off Time</label>
+                    <input asp-for="Input.DropOffTime" class="form-control" />
+                    <span asp-validation-for="Input.DropOffTime" class="text-danger"></span>
+                </div><button class="btn btn-primary" @onclick="typeofcar">type of car</button>
+
+            </div>
+        </div>
 
         <section id="Car models">
             <div class="container m-5">
@@ -55,7 +102,7 @@
                             <div class="card-body">
                                 <h5 class="Chevrolet Impala">Chevrolet Impala</h5>
                                 <p class="card-text">Are you looking for a luxurious ride for your family? This car has 5 seats and 5 baggage compartments.</p>
-                                <button class="btn btn-primary" @onclick="car">Book Now</button>
+                                <a href="#" class="btn btn-primary">Book Now</a>
                             </div>
                         </div>
 
@@ -67,7 +114,7 @@
                             <div class="card-body">
                                 <h5 class="Mercedes Benz S Class">Mercedes Benz S Class</h5>
                                 <p class="card-text">Are you hoping for a classy ride? There are 5 seats and 4 luggage compartments in this car.            </p>
-                                <button class="btn btn-primary" @onclick="car">Book Now</button>
+                                <a href="#" class="btn btn-primary">Book Now</a>
                             </div>
                         </div>
 
@@ -79,7 +126,7 @@
                             <div class="card-body">
                                 <h5 class="Mitsubishi Mirage">Mitsubishi Mirage</h5>
                                 <p class="card-text">Are you seeking for a reasonably priced but comfy ride? There are 4 seats and 2 luggage compartments in this car.</p>
-                                <button class="btn btn-primary" @onclick="car">Book Now</button>
+                                <a href="#" class="btn btn-primary">Book Now</a>
                             </div>
                         </div>
 
@@ -109,9 +156,5 @@
         void typeofcar(MouseEventArgs e)
         {
             NavigationManager.NavigateTo("TypeOfCars");
-        }
-        void car(MouseEventArgs e)
-        {
-            NavigationManager.NavigateTo("Car");
         }
     }

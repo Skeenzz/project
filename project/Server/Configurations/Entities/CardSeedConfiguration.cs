@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using project.Shared.Domain;
 
 namespace project.Server.Configurations.Entities
 {
     public class CardSeedConfiguration : IEntityTypeConfiguration<Card>
     {
-        public void Configure(EntityTypeBuilder<Card> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Card> builder)
         {
             builder.HasData(
                 new Card
@@ -21,7 +20,7 @@ namespace project.Server.Configurations.Entities
 
                 new Card
                 {
-                    Id = 2,
+                    Id = 1,
                     CardType = "credit cards",
                 }
             );
