@@ -1,0 +1,210 @@
+﻿@page "/VehicleMenu"
+@inject NavigationManager NavigationManager
+
+    <div id="test" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#test" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#test" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#test" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#test" data-bs-slide-to="3" aria-label="Slide 4"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active ">
+                <img src="/Images/Main Menu/City.jpg" class=" d-block w-100  " alt="1">
+            </div>
+            <div class="carousel-item">
+                <img src="/Images/Main Menu/Flight.jpg" class=" d-block w-100  " alt="2">
+            </div>
+            <div class="carousel-item ">
+                <img src="/Images/Main Menu/MiniVan.jpg" class="d-block w-100  " alt="3">
+            </div>
+            <div class="carousel-item">
+                <img src="/Images/Main Menu/NightScape.jpg" class="d-block w-100  " alt="4">
+            </div>
+        </div>
+        <a class="carousel-control-prev" type="button" data-bs-target="#test" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </a>
+        <a class="carousel-control-next" type="button" data-bs-target="#test" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </a>
+
+    </div>
+
+
+    <h1>Travelio</h1>
+
+    <h3>Car</h3>
+
+
+    <body>
+
+
+
+
+        <section id="Car models">
+            <div class="container m-5">
+                <h1 class="text-center my-5">Our Recommended Cars</h1>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/Images/Car/Chevrolet Impala.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="Chevrolet Impala">Chevrolet Impala</h5>
+                                <p class="card-text">Are you looking for a luxurious ride for your family? This car has 5 seats and 5 baggage compartments.</p>
+                                <button class="btn btn-primary" @onclick="car">Book Now</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/Images/Car/Mercedes Benz S Class.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="Mercedes Benz S Class">Mercedes Benz S Class</h5>
+                                <p class="card-text">Are you hoping for a classy ride? There are 5 seats and 4 luggage compartments in this car.            </p>
+                                <button class="btn btn-primary" @onclick="car">Book Now</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/Images/Car/Mitsubishi Mirage.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="Mitsubishi Mirage">Mitsubishi Mirage</h5>
+                                <p class="card-text">Are you seeking for a reasonably priced but comfy ride? There are 4 seats and 2 luggage compartments in this car.</p>
+                                <button class="btn btn-primary" @onclick="car">Book Now</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+        <section id="SUV models">
+            <div class="container m-5">
+                <h1 class="text-center my-5">Our Recommended SUVs</h1>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/Images/SUVs/Chevy Suburban.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="Chevy Suburban">Chevy Suburban</h5>
+                                <p class="card-text">This SUV features 8 seats and 7 cargo compartments, making it the most flexible and efficient Suburban ever.</p>
+                                <button class="btn btn-primary" @onclick="car">Book Now</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/Images/SUVs/Nissan Kicks.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="Nissan Kicks">Nissan Kicks</h5>
+                                <p class="card-text">This SUV features 5 seats and 3 luggage compartments, making it the most compact and modern Suburban ever. </p>
+                                <button class="btn btn-primary" @onclick="car">Book Now</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/Images/SUVs/Audi Q7.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="Audi Q7">Audi Q7</h5>
+                                <p class="card-text">Book the most luxurious and technologically advanced SUV ever. There are 5 seats and 3 storage compartments in this SUV.</p>
+                                <button class="btn btn-primary" @onclick="car">Book Now</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+        <section id="Van models">
+            <div class="container m-5">
+                <h1 class="text-center my-5">Our Recommended Vans</h1>
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/Images/Vans/Ford Transit Wagon 15.png" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="Ford Transit Wagon 15">Ford Transit Wagon 15</h5>
+                                <p class="card-text">Book the nicest 15-seater vehicle available. It has a high-roof option that allows passengers to stand up inside the van.</p>
+                                <button class="btn btn-primary" @onclick="car">Book Now</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/Images/Vans/Chrysler Pacifica.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="Mercedes Benz S Class">Mercedes Benz S Class</h5>
+                                <p class="card-text">Make a reservation for the most luxurious minivan. The Chrysler Pacifica has family transit down pat: it's practical, comfy, stylish, and undoubtedly stunning.</p>
+                                <button class="btn btn-primary" @onclick="car">Book Now</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <div class="card" style="width: 18rem;">
+                            <img src="/Images/Vans/Toyota Sienna.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="Toyota Sienna">Toyota Sienna</h5>
+                                <p class="card-text">Choose the most cost-effective minivan. The Toyota Sienna is a family vehicle that is economical, pleasant, and elegant.</p>
+                                <button class="btn btn-primary" @onclick="car">Book Now</button>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </body>
+
+    @code {
+        private void home(MouseEventArgs e)
+        {
+            NavigationManager.NavigateTo("/");
+        }
+        void flights(MouseEventArgs e)
+        {
+            NavigationManager.NavigateTo("Flights");
+        }
+        void traveltip(MouseEventArgs e)
+        {
+            NavigationManager.NavigateTo("TravelTip");
+        }
+        void typeofcar(MouseEventArgs e)
+        {
+            NavigationManager.NavigateTo("TypeOfCars");
+        }
+        void car(MouseEventArgs e)
+        {
+            NavigationManager.NavigateTo("Car");
+        }
+        void packages(MouseEventArgs e)
+        {
+            NavigationManager.NavigateTo("Packages");
+        }
+    }
