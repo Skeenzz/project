@@ -41,6 +41,7 @@
 
     <h3>Home</h3>
 
+    <h5><button class="btn btn-primary" @onclick="Car">Car</button> <button class="btn btn-primary" @onclick="flights">Flights</button> <button class="btn btn-primary" @onclick="Packages">Packages</button>  <button class="btn btn-primary" @onclick="traveltip">Travel Tip</button></h5>
 
     <body>
         <table class="table">
@@ -59,7 +60,7 @@
     @code {
         private void flights(MouseEventArgs e)
         {
-            NavigationManager.NavigateTo("Flights");
+            NavigationManager.NavigateTo("Flight");
         }
         private void traveltip(MouseEventArgs e)
         {
@@ -67,11 +68,15 @@
         }
         private void Car(MouseEventArgs e)
         {
-            NavigationManager.NavigateTo("Car");
+            NavigationManager.NavigateTo("CarMenu");
         }
         private void Packages(MouseEventArgs e)
         {
             NavigationManager.NavigateTo("Packages");
+        }
+        private void payment(MouseEventArgs e)
+        {
+            NavigationManager.NavigateTo("Payment");
         }
     }
 

@@ -1,0 +1,194 @@
+﻿@page "/Flight/"
+@inject NavigationManager NavigationManager
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<div id="test" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#test" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#test" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#test" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#test" data-bs-slide-to="3" aria-label="Slide 4"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active ">
+            <img src="/Images/Main Menu/City.jpg" class=" d-block w-100  " alt="1">
+        </div>
+        <div class="carousel-item">
+            <img src="/Images/Main Menu/Flight.jpg" class=" d-block w-100  " alt="2">
+        </div>
+        <div class="carousel-item ">
+            <img src="/Images/Main Menu/MiniVan.jpg" class="d-block w-100  " alt="3">
+        </div>
+        <div class="carousel-item">
+            <img src="/Images/Main Menu/NightScape.jpg" class="d-block w-100  " alt="4">
+        </div>
+    </div>
+    <a class="carousel-control-prev" type="button" data-bs-target="#test" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </a>
+    <a class="carousel-control-next" type="button" data-bs-target="#test" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </a>
+
+</div>
+
+
+<h3>Flights</h3>
+
+<h5><button class="btn btn-primary" @onclick="Index">Home</button> <button class="btn btn-primary" @onclick="Car">Car</button> <button class="btn btn-primary" @onclick="Packages">Packages</button> <button class="btn btn-primary" @onclick="traveltip">travel tip</button></h5>
+
+<EditForm Model="@booking" OnValidSubmit="CreateBooking">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <label>LeavingFrom: </label>
+        <div>
+            <InputSelect @bind-Value="booking.LeavingFromId" class="form-control">
+                <option value="">-- Select LeavingFrom --</option>
+                @if (flights != null)
+                {
+                    foreach (var leavingfrom in flights)
+                    {
+                        <option value="@leavingfrom.Id">@leavingfrom.LeavingFrom</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => booking.LeavingFromId)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>LeavingFrom: </label>
+        <div>
+            <InputSelect @bind-Value="booking.GoingToId" class="form-control">
+                <option value="">-- Select GoingToId --</option>
+                @if (flights != null)
+                {
+                    foreach (var GoingTo in flights)
+                    {
+                        <option value="@GoingTo.Id">@GoingTo.GoingTo</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => booking.GoingToId)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>TypeOfVehicle: </label>
+        <div>
+            <InputSelect @bind-Value="booking.PriceId" class="form-control">
+                <option value="">-- Select TypeOfVehicle --</option>
+                @if (flights != null)
+                {
+                    foreach (var price in flights)
+                    {
+                        <option value="@price.Id">@price.Price</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => booking.PriceId)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Amount of Passenger: </label>
+        <div>
+            <InputNumber @bind-Value="@booking.Passenger" class="form-control" />
+            <ValidationMessage For="@(() => booking.Passenger)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Date: </label>
+        <div>
+            <InputDate @bind-Value="@booking.Departing" class="form-control" />
+            <ValidationMessage For="@(() => booking.Departing)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Time: </label>
+        <div>
+            <InputDate @bind-Value="@booking.Returning" class="form-control" />
+            <ValidationMessage For="@(() => booking.Returning)" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success btn-block">
+        Payment
+    </button>
+</EditForm>
+
+
+@if (flight == null)
+{
+<div class="alert alert-info">Loading Flights...</div> 
+}
+
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Leaving From</th>
+                <th>Going To</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var flights in flight)
+             {
+                <tr>
+                    <td>@flights.LeavingFrom</td>
+                    <td>@flights.GoingTo</td>
+                    <td>@flights.Price</td>
+
+                    <td>
+                        <a href="/vehicles/view/@flights.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                    </td>
+                </tr>
+             }
+        </tbody>
+    </table>}
+@code {
+    private List<Flights> flight;
+
+    protected async override Task OnInitializedAsync()
+    {
+        flight = await _client.GetFromJsonAsync<List<Flights>>($"{Endpoints.FlightsEndpoint}");
+        flights = await _client.GetFromJsonAsync<List<Flights>>($"{Endpoints.FlightsEndpoint}");
+    }
+
+    Booking booking = new Booking();
+
+    private IList<Flights> flights;
+
+    private async Task CreateBooking()
+    {
+        await _client.PostAsJsonAsync(Endpoints.BookingEndpoint, booking);
+        NavigationManager.NavigateTo("/payment");
+
+    }
+
+    private void Index(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("/");
+    }
+    private void traveltip(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("/TravelTip");
+    }
+    private void Car(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("TypeOfCar");
+    }
+    private void Packages(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Packages");
+    }
+    private void Payment(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Payment");
+    }
+}
