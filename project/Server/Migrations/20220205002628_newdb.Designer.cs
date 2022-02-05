@@ -10,7 +10,7 @@ using project.Server.Data;
 namespace project.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220131092317_newdb")]
+    [Migration("20220205002628_newdb")]
     partial class newdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -154,14 +154,14 @@ namespace project.Server.Migrations
                         new
                         {
                             Id = "ad2bcf0c-20db-474f-8407-5a6b159518ba",
-                            ConcurrencyStamp = "7efd1537-d89c-45db-b0ea-524292248618",
+                            ConcurrencyStamp = "2e60a09c-9f70-43d2-94ff-0fc00073d455",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "bd2bcf0c-20db-474f-8407-5a6b159518bb",
-                            ConcurrencyStamp = "2668c742-eb67-4acf-8d2f-392cece87b45",
+                            ConcurrencyStamp = "ab21869d-5496-4409-a202-3c766d4ec46d",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -357,7 +357,7 @@ namespace project.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9d43881e-822f-4ca3-b404-50cc51fd6137",
+                            ConcurrencyStamp = "736d93c8-0b41-41d3-99dc-9ee5dc235c29",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -365,9 +365,9 @@ namespace project.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDrL0GrnqyvqHC/IecVng4mE+RViCrDgRKyRXZjNgz+/Ju9u+sE3lg6i+vkukzWIpg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB55BrFFeLNG4lh04mqUAiD4RHY0PzqK6ktivgrFtOSQP9zgBqFN4+J8JkW0XKgpMw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "6d72534d-2ca2-4022-9c97-a364b9bab928",
+                            SecurityStamp = "5e5e9e67-99cd-44de-a484-85bf739d9d05",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -556,8 +556,8 @@ namespace project.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 17, 23, 16, 570, DateTimeKind.Local).AddTicks(6197),
-                            DateUpdated = new DateTime(2022, 1, 31, 17, 23, 16, 570, DateTimeKind.Local).AddTicks(6215),
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 318, DateTimeKind.Local).AddTicks(439),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 318, DateTimeKind.Local).AddTicks(455),
                             GoingTo = "japan",
                             LeavingFrom = "Singapore",
                             Price = 780.0,
@@ -567,8 +567,8 @@ namespace project.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 17, 23, 16, 570, DateTimeKind.Local).AddTicks(6221),
-                            DateUpdated = new DateTime(2022, 1, 31, 17, 23, 16, 570, DateTimeKind.Local).AddTicks(6223),
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 318, DateTimeKind.Local).AddTicks(463),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 318, DateTimeKind.Local).AddTicks(465),
                             GoingTo = "USA",
                             LeavingFrom = "Singapore",
                             Price = 1780.0,
@@ -578,8 +578,8 @@ namespace project.Server.Migrations
                         {
                             Id = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 17, 23, 16, 570, DateTimeKind.Local).AddTicks(6226),
-                            DateUpdated = new DateTime(2022, 1, 31, 17, 23, 16, 570, DateTimeKind.Local).AddTicks(6228),
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 318, DateTimeKind.Local).AddTicks(469),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 318, DateTimeKind.Local).AddTicks(470),
                             GoingTo = "china",
                             LeavingFrom = "Singapore",
                             Price = 580.0,
@@ -605,10 +605,6 @@ namespace project.Server.Migrations
 
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("Details")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -636,15 +632,14 @@ namespace project.Server.Migrations
                         new
                         {
                             Id = 1,
-                            Capacity = 5,
+                            Capacity = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 17, 23, 16, 565, DateTimeKind.Local).AddTicks(3631),
-                            DateUpdated = new DateTime(2022, 1, 31, 17, 23, 16, 567, DateTimeKind.Local).AddTicks(7412),
-                            Details = "Barely on the road and the BMW 3 Series Sedan is already leaving everything behind it, including conventions and expectations. Once again the icon displays how to reinvent itself. ",
-                            Name = "BMW 318i",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 311, DateTimeKind.Local).AddTicks(7347),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(5534),
+                            Name = "Mitsubishi Mirage",
                             Price = 50.5,
-                            Seat = 5,
-                            TypeOfVehicles = "Sedan",
+                            Seat = 4,
+                            TypeOfVehicles = "Economy Car",
                             UpdatedBy = "System"
                         },
                         new
@@ -652,41 +647,428 @@ namespace project.Server.Migrations
                             Id = 2,
                             Capacity = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 17, 23, 16, 567, DateTimeKind.Local).AddTicks(9069),
-                            DateUpdated = new DateTime(2022, 1, 31, 17, 23, 16, 567, DateTimeKind.Local).AddTicks(9078),
-                            Details = "There is no denying the high-quality performance, comfort and complete privacy of the Pullman Deluxe Edition Mercedes-Benz Limousine. Luxury is at its peak with this full-stretch service vehicle, custom-extended 100″(+250 cm) and cruising toward greatness at every turn. A very spacious and accommodating all-leather seating configuration, deep window tinting, rear-cabin/cockpit privacy divider, and hands-free intercom features make the Pullman Deluxe a compelling option for groups of politicians, entertainers, corporate outings or a VIP entourage seeking ultimate luxury and style on the road.",
-                            Name = "Mercedes S-Class",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7590),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7601),
+                            Name = "Nissan Versa",
                             Price = 40.399999999999999,
-                            Seat = 8,
-                            TypeOfVehicles = "limo",
+                            Seat = 5,
+                            TypeOfVehicles = "Compact Car",
                             UpdatedBy = "System"
                         },
                         new
                         {
                             Id = 3,
-                            Capacity = 6,
+                            Capacity = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 17, 23, 16, 567, DateTimeKind.Local).AddTicks(9083),
-                            DateUpdated = new DateTime(2022, 1, 31, 17, 23, 16, 567, DateTimeKind.Local).AddTicks(9084),
-                            Details = "When it comes to SUVs, we’re spoilt for choice. There are small ones, big ones, rugged ones, fast ones, hybrids and even fully electric ones. But with such a great variety, it’s surprising that there are so few seven-seat SUVs with a premium badge – at least ones that aren’t the size of an aircraft carrier. That's where the Mercedes GLB steps in.",
-                            Name = "Mercedes GLB SUV",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7607),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7610),
+                            Name = "Toyota Corolla",
                             Price = 45.130000000000003,
-                            Seat = 7,
-                            TypeOfVehicles = "Hatchbacks",
+                            Seat = 5,
+                            TypeOfVehicles = "MidSize Car",
                             UpdatedBy = "System"
                         },
                         new
                         {
                             Id = 4,
+                            Capacity = 3,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7613),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7615),
+                            Name = "Volkswagen Jetta",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Standard Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Capacity = 4,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7621),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7623),
+                            Name = "Chevy Malibu",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Full Size Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Capacity = 2,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7626),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7628),
+                            Name = "Ford Mustang Convertible",
+                            Price = 30.300000000000001,
+                            Seat = 4,
+                            TypeOfVehicles = "Convertible Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Capacity = 2,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7631),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7633),
+                            Name = "Dodge Challenger",
+                            Price = 30.300000000000001,
+                            Seat = 4,
+                            TypeOfVehicles = "Sporty Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Capacity = 2,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7637),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7639),
+                            Name = "INFINITI Q50",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Full Size Elite Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Capacity = 2,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7643),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7645),
+                            Name = " Audi A5 Sportback",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Full Size Elite Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Capacity = 2,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7648),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7650),
+                            Name = "BMW 228i Gran Coupe",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Standard Elite Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Capacity = 4,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7654),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7656),
+                            Name = "Tesla Model S",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Luxury Elite Electric Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Capacity = 4,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7659),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7661),
+                            Name = "Chevrolet Impala",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Premium Special Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Capacity = 4,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7666),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7668),
+                            Name = "BMW 5 Series ",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Premium Elite Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Capacity = 4,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7671),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7673),
+                            Name = "Nissan Maxima ",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Premium Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Capacity = 4,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7676),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7678),
+                            Name = "Chrysler 300",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Luxury Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Capacity = 3,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7682),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7684),
+                            Name = "Maserati Ghibli",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Executive Luxury Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Capacity = 3,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7687),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7689),
+                            Name = "Mercedes AMG E53",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Executive Luxury Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Capacity = 4,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7692),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7695),
+                            Name = "BMW 7 Series",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Large Executive Luxury Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Capacity = 4,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7698),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7700),
+                            Name = "Mercedes Benz S Class",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Large Executive Luxury Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Capacity = 4,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7703),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7705),
+                            Name = "Porsche Panamera",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Large Executive Luxury Car",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 21,
+                            Capacity = 3,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7709),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7710),
+                            Name = "Nissan Kicks",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Compact SUV",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 22,
+                            Capacity = 4,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7714),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7716),
+                            Name = "Nissan Rogue",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "MidSize SUV",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 23,
                             Capacity = 5,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 1, 31, 17, 23, 16, 567, DateTimeKind.Local).AddTicks(9087),
-                            DateUpdated = new DateTime(2022, 1, 31, 17, 23, 16, 567, DateTimeKind.Local).AddTicks(9089),
-                            Details = "The Chrysler Pacifica offers the only fully automatic All-Wheel-Drive System in the segment capable of transferring 100% of the available engine torque to the rear wheels or whichever wheels have more available traction.",
-                            Name = "Chrysler Pacifica",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7720),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7722),
+                            Name = "Ford Edge ",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Standard SUV",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            Capacity = 3,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7725),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7727),
+                            Name = "Chevrolet Tahoe ",
                             Price = 30.300000000000001,
                             Seat = 7,
-                            TypeOfVehicles = "minivan",
+                            TypeOfVehicles = "Full Size SUV",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 25,
+                            Capacity = 3,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7731),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7733),
+                            Name = "Infiniti QX80",
+                            Price = 30.300000000000001,
+                            Seat = 7,
+                            TypeOfVehicles = "Luxury SUV",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 26,
+                            Capacity = 3,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7737),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7739),
+                            Name = "Cadillac XT4",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Standard Elite SUV",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 27,
+                            Capacity = 3,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7743),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7745),
+                            Name = "Volkswagen Atlas",
+                            Price = 30.300000000000001,
+                            Seat = 7,
+                            TypeOfVehicles = "Premium Crossover",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            Capacity = 3,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7748),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7750),
+                            Name = "Mercedes Benz GLE",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Luxury Elite SUV",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 29,
+                            Capacity = 7,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7754),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7756),
+                            Name = "Chevy Suburban",
+                            Price = 30.300000000000001,
+                            Seat = 8,
+                            TypeOfVehicles = "Premium SUV",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 30,
+                            Capacity = 4,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7760),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7761),
+                            Name = "BMW X3 ",
+                            Price = 30.300000000000001,
+                            Seat = 5,
+                            TypeOfVehicles = "Premium Elite SUV",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 31,
+                            Capacity = 5,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7765),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7767),
+                            Name = "Chrysler Pacifica ",
+                            Price = 30.300000000000001,
+                            Seat = 7,
+                            TypeOfVehicles = "7 Passenger Minivan",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 32,
+                            Capacity = 5,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7770),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7772),
+                            Name = "Toyota Sienna",
+                            Price = 30.300000000000001,
+                            Seat = 8,
+                            TypeOfVehicles = "8 Passenger Minivan",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 33,
+                            Capacity = 12,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7776),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7778),
+                            Name = "Ford Transit Wagon",
+                            Price = 30.300000000000001,
+                            Seat = 12,
+                            TypeOfVehicles = "12 Passenger Van",
+                            UpdatedBy = "System"
+                        },
+                        new
+                        {
+                            Id = 34,
+                            Capacity = 2,
+                            CreatedBy = "System",
+                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7781),
+                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7783),
+                            Name = "Ford Transit Wagon",
+                            Price = 30.300000000000001,
+                            Seat = 15,
+                            TypeOfVehicles = "15 Passenger Van",
                             UpdatedBy = "System"
                         });
                 });
@@ -777,7 +1159,7 @@ namespace project.Server.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("project.Shared.Domain.TypeOfVehicle", "TypeOfVehicles")
+                    b.HasOne("project.Shared.Domain.TypeOfVehicle", "TypeOfVehicle")
                         .WithMany()
                         .HasForeignKey("TypeOfVehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -785,7 +1167,7 @@ namespace project.Server.Migrations
 
                     b.Navigation("Price");
 
-                    b.Navigation("TypeOfVehicles");
+                    b.Navigation("TypeOfVehicle");
                 });
 #pragma warning restore 612, 618
         }

@@ -12,8 +12,8 @@ namespace project.Shared.Domain
         [Required]
         public string LeavingFrom { get; set; }
         [Required]
-        public string? GoingTo { get; set; }
+        public string GoingTo { get; set; }
         [Required]
-        public double? Price { get; set; }
+        public double Price { get; set; }
     }
 }

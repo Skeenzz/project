@@ -18,8 +18,6 @@ namespace project.Shared.Domain
         [Required]
         public int Capacity { get; set; }
         [Required]
-        public string Details { get; set; }
-        [Required]
-        public double? Price { get; set; }
+        public double Price { get; set; }
     }
 }

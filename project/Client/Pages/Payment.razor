@@ -8,6 +8,17 @@
 
 <h5>The Bookings</h5>
 
+<button class="btn btn-secondary" @onclick="@BackCars">
+    <span class="oi oi-plus"></span>
+    Create New Vehicle Booking
+</button>
+<button class="btn btn-secondary" @onclick="@BackFlights">
+    <span class="oi oi-plus"></span>
+    Create New Flights Booking
+</button>
+<br />
+<br />
+
 <p>Vehicles Booking</p>
 
 @if (bookingDetails == null)
@@ -33,25 +44,25 @@ else
         <tbody>
             @foreach (var bDetails in bookingDetails)
             {
-            <tr>
-                <td>@bDetails.TypeOfVehicle</td>
-                <td>@bDetails.Price</td>
-                <td>@bDetails.Destination</td>
-                <td>@bDetails.Address</td>
-                <td>@bDetails.Passenger</td>
-                <td>@bDetails.luggage</td>
-                <td>@bDetails.Time </td>
-                <td>@bDetails.Date.ToString("dd MMMM yyyy")</td>
+                <tr>
+                    <td>@bDetails.TypeOfVehicle.Name</td>
+                    <td>@bDetails.TypeOfVehicle.Price</td>
+                    <td>@bDetails.Destination</td>
+                    <td>@bDetails.Address</td>
+                    <td>@bDetails.Passenger</td>
+                    <td>@bDetails.luggage</td>
+                    <td>@bDetails.Time </td>
+                    <td>@bDetails.Date.ToString("dd MMMM yyyy")</td>
 
-                <td>
-                    <a href="/vehicles/view/@bDetails.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete_2(bDetails.Id))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
-            </tr>
+                    <td>
+                        <a href="/vehicles/view/@bDetails.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete_2(bDetails.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
@@ -65,7 +76,7 @@ else
 
 else
 {
-   <table class="table table-responsive">
+    <table class="table table-responsive">
         <thead>
             <tr>
                 <th>LeavingFrom</th>
@@ -79,24 +90,24 @@ else
         <tbody>
             @foreach (var bookings in booking)
             {
-            <tr>
-                <td>@bookings.LeavingFrom</td>
-                <td>@bookings.GoingTo</td>
-                <td>@bookings.Passenger</td>
-                <td>@bookings.Price</td>
-                <td>@bookings.Departing.ToString("dd MMMM yyyy")</td>
-                <td>@bookings.Returning.ToString("dd MMMM yyyy")</td>
+                <tr>
+                    <td>@bookings.LeavingFrom.LeavingFrom</td>
+                    <td>@bookings.GoingTo.GoingTo</td>
+                    <td>@bookings.Passenger</td>
+                    <td>@bookings.Price.Price</td>
+                    <td>@bookings.Departing.ToString("dd MMMM yyyy")</td>
+                    <td>@bookings.Returning.ToString("dd MMMM yyyy")</td>
 
 
-                <td>
-                    <a href="/vehicles/view/@bookings.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(bookings.Id))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
-            </tr>
+                    <td>
+                        <a href="/vehicles/view/@bookings.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(bookings.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
@@ -124,7 +135,7 @@ else
         }
     }
     async Task Delete_2(int bookingdetailId)
-    { 
+    {
         var bDetails = bookingDetails.First(q => q.Id == bookingdetailId);
         var confirms = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {bDetails.Id}? ");
         if (confirms)
@@ -135,10 +146,10 @@ else
     }
     void BackCars(MouseEventArgs e)
     {
-        NavigationManager.NavigateTo("TypeOfCars");
+        NavigationManager.NavigateTo("TypeOfCar");
     }
     void BackFlights(MouseEventArgs e)
     {
-        NavigationManager.NavigateTo("Flights");
+        NavigationManager.NavigateTo("Flight");
     }
 }
