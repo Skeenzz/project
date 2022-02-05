@@ -160,7 +160,7 @@ else
         flights = await _client.GetFromJsonAsync<List<Flights>>($"{Endpoints.FlightsEndpoint}");
     }
 
-    Booking booking = new Booking();
+    FlightBooking booking = new FlightBooking();
 
     private IList<Flights> flights;
 

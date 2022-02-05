@@ -19,6 +19,7 @@
 <br />
 <br />
 
+=======
 <p>Vehicles Booking</p>
 
 @if (bookingDetails == null)
@@ -63,11 +64,32 @@ else
                         </button>
                     </td>
                 </tr>
+
+            <tr>
+                <td>@bDetails.TypeOfVehicle</td>
+                <td>@bDetails.Price</td>
+                <td>@bDetails.Destination</td>
+                <td>@bDetails.Address</td>
+                <td>@bDetails.Passenger</td>
+                <td>@bDetails.luggage</td>
+                <td>@bDetails.Time </td>
+                <td>@bDetails.Date.ToString("dd MMMM yyyy")</td>
+
+                <td>
+                    <a href="/vehicles/view/@bDetails.Id" class="btn btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+                    <button class="btn btn-danger" @onclick="@(()=>Delete_2(bDetails.Id))">
+                        <span class="oi oi-delete"></span>
+                    </button>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
 }
 <p>Flight Booking</p>
+
 
 @if (booking == null)
 {
@@ -97,7 +119,7 @@ else
                     <td>@bookings.Price.Price</td>
                     <td>@bookings.Departing.ToString("dd MMMM yyyy")</td>
                     <td>@bookings.Returning.ToString("dd MMMM yyyy")</td>
-
+                
 
                     <td>
                         <a href="/vehicles/view/@bookings.Id" class="btn btn-primary">
@@ -114,14 +136,14 @@ else
 }
 
 @code {
-    private List<BookingDetails> bookingDetails;
+    private List<VehicleBooking> bookingDetails;
 
-    private List<Booking> booking;
+    private List<FlightBooking> booking;
 
     protected async override Task OnInitializedAsync()
     {
-        bookingDetails = await _client.GetFromJsonAsync<List<BookingDetails>>($"{Endpoints.BookingdetailEndpoint}");
-        booking = await _client.GetFromJsonAsync<List<Booking>>($"{Endpoints.BookingEndpoint}");
+        bookingDetails = await _client.GetFromJsonAsync<List<VehicleBooking>>($"{Endpoints.BookingdetailEndpoint}");
+        booking = await _client.GetFromJsonAsync<List<FlightBooking>>($"{Endpoints.BookingEndpoint}");
     }
 
     async Task Delete(int bookingId)

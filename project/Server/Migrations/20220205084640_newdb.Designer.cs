@@ -10,7 +10,7 @@ using project.Server.Data;
 namespace project.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220205002628_newdb")]
+    [Migration("20220205084640_newdb")]
     partial class newdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -154,14 +154,14 @@ namespace project.Server.Migrations
                         new
                         {
                             Id = "ad2bcf0c-20db-474f-8407-5a6b159518ba",
-                            ConcurrencyStamp = "2e60a09c-9f70-43d2-94ff-0fc00073d455",
+                            ConcurrencyStamp = "2923b22c-2ee7-46f8-8c05-fc00107a548e",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "bd2bcf0c-20db-474f-8407-5a6b159518bb",
-                            ConcurrencyStamp = "ab21869d-5496-4409-a202-3c766d4ec46d",
+                            ConcurrencyStamp = "b72fd760-5a12-41a2-81ea-384a92596560",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -357,7 +357,7 @@ namespace project.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "736d93c8-0b41-41d3-99dc-9ee5dc235c29",
+                            ConcurrencyStamp = "711f7f7f-5f30-4825-a5c6-12ba5f7a5220",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -365,112 +365,12 @@ namespace project.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEB55BrFFeLNG4lh04mqUAiD4RHY0PzqK6ktivgrFtOSQP9zgBqFN4+J8JkW0XKgpMw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEOoVbA/Ordmc99P0MNSgOvc0Ah/IaQGxGDOVbDic80nEwJahayrkD0G/0vSWLA7c9g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "5e5e9e67-99cd-44de-a484-85bf739d9d05",
+                            SecurityStamp = "0abd3026-891b-4a3a-b2d2-3069d339bd89",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
-                });
-
-            modelBuilder.Entity("project.Shared.Domain.Booking", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("Departing")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("GoingToId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("LeavingFromId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Passenger")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PriceId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Returning")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GoingToId");
-
-                    b.HasIndex("LeavingFromId");
-
-                    b.HasIndex("PriceId");
-
-                    b.ToTable("Booking");
-                });
-
-            modelBuilder.Entity("project.Shared.Domain.BookingDetails", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Destination")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Passenger")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PriceId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("TypeOfVehicleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("luggage")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PriceId");
-
-                    b.HasIndex("TypeOfVehicleId");
-
-                    b.ToTable("BookingDetails");
                 });
 
             modelBuilder.Entity("project.Shared.Domain.Card", b =>
@@ -516,6 +416,54 @@ namespace project.Server.Migrations
                         });
                 });
 
+            modelBuilder.Entity("project.Shared.Domain.FlightBooking", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Departing")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("GoingToId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("LeavingFromId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Passenger")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PriceId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Returning")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GoingToId");
+
+                    b.HasIndex("LeavingFromId");
+
+                    b.HasIndex("PriceId");
+
+                    b.ToTable("FlightBooking");
+                });
+
             modelBuilder.Entity("project.Shared.Domain.Flights", b =>
                 {
                     b.Property<int>("Id")
@@ -540,8 +488,7 @@ namespace project.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Price")
-                        .IsRequired()
+                    b.Property<double>("Price")
                         .HasColumnType("float");
 
                     b.Property<string>("UpdatedBy")
@@ -556,8 +503,8 @@ namespace project.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 318, DateTimeKind.Local).AddTicks(439),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 318, DateTimeKind.Local).AddTicks(455),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 403, DateTimeKind.Local).AddTicks(7584),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 403, DateTimeKind.Local).AddTicks(7619),
                             GoingTo = "japan",
                             LeavingFrom = "Singapore",
                             Price = 780.0,
@@ -567,8 +514,8 @@ namespace project.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 318, DateTimeKind.Local).AddTicks(463),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 318, DateTimeKind.Local).AddTicks(465),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 403, DateTimeKind.Local).AddTicks(7626),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 403, DateTimeKind.Local).AddTicks(7628),
                             GoingTo = "USA",
                             LeavingFrom = "Singapore",
                             Price = 1780.0,
@@ -578,8 +525,8 @@ namespace project.Server.Migrations
                         {
                             Id = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 318, DateTimeKind.Local).AddTicks(469),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 318, DateTimeKind.Local).AddTicks(470),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 403, DateTimeKind.Local).AddTicks(7631),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 403, DateTimeKind.Local).AddTicks(7632),
                             GoingTo = "china",
                             LeavingFrom = "Singapore",
                             Price = 580.0,
@@ -610,8 +557,7 @@ namespace project.Server.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Price")
-                        .IsRequired()
+                    b.Property<double>("Price")
                         .HasColumnType("float");
 
                     b.Property<int>("Seat")
@@ -634,10 +580,10 @@ namespace project.Server.Migrations
                             Id = 1,
                             Capacity = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 311, DateTimeKind.Local).AddTicks(7347),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(5534),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 398, DateTimeKind.Local).AddTicks(9392),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(2077),
                             Name = "Mitsubishi Mirage",
-                            Price = 50.5,
+                            Price = 40.0,
                             Seat = 4,
                             TypeOfVehicles = "Economy Car",
                             UpdatedBy = "System"
@@ -647,10 +593,10 @@ namespace project.Server.Migrations
                             Id = 2,
                             Capacity = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7590),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7601),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3465),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3472),
                             Name = "Nissan Versa",
-                            Price = 40.399999999999999,
+                            Price = 60.0,
                             Seat = 5,
                             TypeOfVehicles = "Compact Car",
                             UpdatedBy = "System"
@@ -660,10 +606,10 @@ namespace project.Server.Migrations
                             Id = 3,
                             Capacity = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7607),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7610),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3475),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3476),
                             Name = "Toyota Corolla",
-                            Price = 45.130000000000003,
+                            Price = 75.0,
                             Seat = 5,
                             TypeOfVehicles = "MidSize Car",
                             UpdatedBy = "System"
@@ -673,10 +619,10 @@ namespace project.Server.Migrations
                             Id = 4,
                             Capacity = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7613),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7615),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3479),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3480),
                             Name = "Volkswagen Jetta",
-                            Price = 30.300000000000001,
+                            Price = 80.0,
                             Seat = 5,
                             TypeOfVehicles = "Standard Car",
                             UpdatedBy = "System"
@@ -686,10 +632,10 @@ namespace project.Server.Migrations
                             Id = 5,
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7621),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7623),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3483),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3485),
                             Name = "Chevy Malibu",
-                            Price = 30.300000000000001,
+                            Price = 85.0,
                             Seat = 5,
                             TypeOfVehicles = "Full Size Car",
                             UpdatedBy = "System"
@@ -699,10 +645,10 @@ namespace project.Server.Migrations
                             Id = 6,
                             Capacity = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7626),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7628),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3487),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3488),
                             Name = "Ford Mustang Convertible",
-                            Price = 30.300000000000001,
+                            Price = 90.0,
                             Seat = 4,
                             TypeOfVehicles = "Convertible Car",
                             UpdatedBy = "System"
@@ -712,10 +658,10 @@ namespace project.Server.Migrations
                             Id = 7,
                             Capacity = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7631),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7633),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3490),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3492),
                             Name = "Dodge Challenger",
-                            Price = 30.300000000000001,
+                            Price = 120.0,
                             Seat = 4,
                             TypeOfVehicles = "Sporty Car",
                             UpdatedBy = "System"
@@ -725,10 +671,10 @@ namespace project.Server.Migrations
                             Id = 8,
                             Capacity = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7637),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7639),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3495),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3496),
                             Name = "INFINITI Q50",
-                            Price = 30.300000000000001,
+                            Price = 150.0,
                             Seat = 5,
                             TypeOfVehicles = "Full Size Elite Car",
                             UpdatedBy = "System"
@@ -738,10 +684,10 @@ namespace project.Server.Migrations
                             Id = 9,
                             Capacity = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7643),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7645),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3499),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3500),
                             Name = " Audi A5 Sportback",
-                            Price = 30.300000000000001,
+                            Price = 180.0,
                             Seat = 5,
                             TypeOfVehicles = "Full Size Elite Car",
                             UpdatedBy = "System"
@@ -751,10 +697,10 @@ namespace project.Server.Migrations
                             Id = 10,
                             Capacity = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7648),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7650),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3502),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3504),
                             Name = "BMW 228i Gran Coupe",
-                            Price = 30.300000000000001,
+                            Price = 180.0,
                             Seat = 5,
                             TypeOfVehicles = "Standard Elite Car",
                             UpdatedBy = "System"
@@ -764,10 +710,10 @@ namespace project.Server.Migrations
                             Id = 11,
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7654),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7656),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3506),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3508),
                             Name = "Tesla Model S",
-                            Price = 30.300000000000001,
+                            Price = 180.0,
                             Seat = 5,
                             TypeOfVehicles = "Luxury Elite Electric Car",
                             UpdatedBy = "System"
@@ -777,10 +723,10 @@ namespace project.Server.Migrations
                             Id = 12,
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7659),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7661),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3510),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3511),
                             Name = "Chevrolet Impala",
-                            Price = 30.300000000000001,
+                            Price = 180.0,
                             Seat = 5,
                             TypeOfVehicles = "Premium Special Car",
                             UpdatedBy = "System"
@@ -790,10 +736,10 @@ namespace project.Server.Migrations
                             Id = 13,
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7666),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7668),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3514),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3516),
                             Name = "BMW 5 Series ",
-                            Price = 30.300000000000001,
+                            Price = 180.0,
                             Seat = 5,
                             TypeOfVehicles = "Premium Elite Car",
                             UpdatedBy = "System"
@@ -803,10 +749,10 @@ namespace project.Server.Migrations
                             Id = 14,
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7671),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7673),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3518),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3519),
                             Name = "Nissan Maxima ",
-                            Price = 30.300000000000001,
+                            Price = 180.0,
                             Seat = 5,
                             TypeOfVehicles = "Premium Car",
                             UpdatedBy = "System"
@@ -816,10 +762,10 @@ namespace project.Server.Migrations
                             Id = 15,
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7676),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7678),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3521),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3523),
                             Name = "Chrysler 300",
-                            Price = 30.300000000000001,
+                            Price = 190.0,
                             Seat = 5,
                             TypeOfVehicles = "Luxury Car",
                             UpdatedBy = "System"
@@ -829,10 +775,10 @@ namespace project.Server.Migrations
                             Id = 16,
                             Capacity = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7682),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7684),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3525),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3526),
                             Name = "Maserati Ghibli",
-                            Price = 30.300000000000001,
+                            Price = 190.0,
                             Seat = 5,
                             TypeOfVehicles = "Executive Luxury Car",
                             UpdatedBy = "System"
@@ -842,10 +788,10 @@ namespace project.Server.Migrations
                             Id = 17,
                             Capacity = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7687),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7689),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3529),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3530),
                             Name = "Mercedes AMG E53",
-                            Price = 30.300000000000001,
+                            Price = 200.0,
                             Seat = 5,
                             TypeOfVehicles = "Executive Luxury Car",
                             UpdatedBy = "System"
@@ -855,10 +801,10 @@ namespace project.Server.Migrations
                             Id = 18,
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7692),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7695),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3532),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3534),
                             Name = "BMW 7 Series",
-                            Price = 30.300000000000001,
+                            Price = 250.0,
                             Seat = 5,
                             TypeOfVehicles = "Large Executive Luxury Car",
                             UpdatedBy = "System"
@@ -868,10 +814,10 @@ namespace project.Server.Migrations
                             Id = 19,
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7698),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7700),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3536),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3537),
                             Name = "Mercedes Benz S Class",
-                            Price = 30.300000000000001,
+                            Price = 250.0,
                             Seat = 5,
                             TypeOfVehicles = "Large Executive Luxury Car",
                             UpdatedBy = "System"
@@ -881,10 +827,10 @@ namespace project.Server.Migrations
                             Id = 20,
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7703),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7705),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3539),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3541),
                             Name = "Porsche Panamera",
-                            Price = 30.300000000000001,
+                            Price = 250.0,
                             Seat = 5,
                             TypeOfVehicles = "Large Executive Luxury Car",
                             UpdatedBy = "System"
@@ -894,10 +840,10 @@ namespace project.Server.Migrations
                             Id = 21,
                             Capacity = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7709),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7710),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3543),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3544),
                             Name = "Nissan Kicks",
-                            Price = 30.300000000000001,
+                            Price = 120.0,
                             Seat = 5,
                             TypeOfVehicles = "Compact SUV",
                             UpdatedBy = "System"
@@ -907,10 +853,10 @@ namespace project.Server.Migrations
                             Id = 22,
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7714),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7716),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3546),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3548),
                             Name = "Nissan Rogue",
-                            Price = 30.300000000000001,
+                            Price = 150.0,
                             Seat = 5,
                             TypeOfVehicles = "MidSize SUV",
                             UpdatedBy = "System"
@@ -920,10 +866,10 @@ namespace project.Server.Migrations
                             Id = 23,
                             Capacity = 5,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7720),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7722),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3550),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3552),
                             Name = "Ford Edge ",
-                            Price = 30.300000000000001,
+                            Price = 180.0,
                             Seat = 5,
                             TypeOfVehicles = "Standard SUV",
                             UpdatedBy = "System"
@@ -933,10 +879,10 @@ namespace project.Server.Migrations
                             Id = 24,
                             Capacity = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7725),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7727),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3554),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3556),
                             Name = "Chevrolet Tahoe ",
-                            Price = 30.300000000000001,
+                            Price = 200.0,
                             Seat = 7,
                             TypeOfVehicles = "Full Size SUV",
                             UpdatedBy = "System"
@@ -946,10 +892,10 @@ namespace project.Server.Migrations
                             Id = 25,
                             Capacity = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7731),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7733),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3558),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3559),
                             Name = "Infiniti QX80",
-                            Price = 30.300000000000001,
+                            Price = 250.0,
                             Seat = 7,
                             TypeOfVehicles = "Luxury SUV",
                             UpdatedBy = "System"
@@ -959,10 +905,10 @@ namespace project.Server.Migrations
                             Id = 26,
                             Capacity = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7737),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7739),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3561),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3563),
                             Name = "Cadillac XT4",
-                            Price = 30.300000000000001,
+                            Price = 180.0,
                             Seat = 5,
                             TypeOfVehicles = "Standard Elite SUV",
                             UpdatedBy = "System"
@@ -972,10 +918,10 @@ namespace project.Server.Migrations
                             Id = 27,
                             Capacity = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7743),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7745),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3565),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3566),
                             Name = "Volkswagen Atlas",
-                            Price = 30.300000000000001,
+                            Price = 180.0,
                             Seat = 7,
                             TypeOfVehicles = "Premium Crossover",
                             UpdatedBy = "System"
@@ -985,10 +931,10 @@ namespace project.Server.Migrations
                             Id = 28,
                             Capacity = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7748),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7750),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3569),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3570),
                             Name = "Mercedes Benz GLE",
-                            Price = 30.300000000000001,
+                            Price = 220.0,
                             Seat = 5,
                             TypeOfVehicles = "Luxury Elite SUV",
                             UpdatedBy = "System"
@@ -998,10 +944,10 @@ namespace project.Server.Migrations
                             Id = 29,
                             Capacity = 7,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7754),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7756),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3572),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3574),
                             Name = "Chevy Suburban",
-                            Price = 30.300000000000001,
+                            Price = 220.0,
                             Seat = 8,
                             TypeOfVehicles = "Premium SUV",
                             UpdatedBy = "System"
@@ -1011,10 +957,10 @@ namespace project.Server.Migrations
                             Id = 30,
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7760),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7761),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3576),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3577),
                             Name = "BMW X3 ",
-                            Price = 30.300000000000001,
+                            Price = 250.0,
                             Seat = 5,
                             TypeOfVehicles = "Premium Elite SUV",
                             UpdatedBy = "System"
@@ -1024,10 +970,10 @@ namespace project.Server.Migrations
                             Id = 31,
                             Capacity = 5,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7765),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7767),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3579),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3581),
                             Name = "Chrysler Pacifica ",
-                            Price = 30.300000000000001,
+                            Price = 200.0,
                             Seat = 7,
                             TypeOfVehicles = "7 Passenger Minivan",
                             UpdatedBy = "System"
@@ -1037,10 +983,10 @@ namespace project.Server.Migrations
                             Id = 32,
                             Capacity = 5,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7770),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7772),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3583),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3585),
                             Name = "Toyota Sienna",
-                            Price = 30.300000000000001,
+                            Price = 220.0,
                             Seat = 8,
                             TypeOfVehicles = "8 Passenger Minivan",
                             UpdatedBy = "System"
@@ -1050,10 +996,10 @@ namespace project.Server.Migrations
                             Id = 33,
                             Capacity = 12,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7776),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7778),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3587),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3588),
                             Name = "Ford Transit Wagon",
-                            Price = 30.300000000000001,
+                            Price = 230.0,
                             Seat = 12,
                             TypeOfVehicles = "12 Passenger Van",
                             UpdatedBy = "System"
@@ -1063,14 +1009,66 @@ namespace project.Server.Migrations
                             Id = 34,
                             Capacity = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7781),
-                            DateUpdated = new DateTime(2022, 2, 5, 8, 26, 27, 314, DateTimeKind.Local).AddTicks(7783),
+                            DateCreated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3591),
+                            DateUpdated = new DateTime(2022, 2, 5, 16, 46, 39, 401, DateTimeKind.Local).AddTicks(3592),
                             Name = "Ford Transit Wagon",
-                            Price = 30.300000000000001,
+                            Price = 250.0,
                             Seat = 15,
                             TypeOfVehicles = "15 Passenger Van",
                             UpdatedBy = "System"
                         });
+                });
+
+            modelBuilder.Entity("project.Shared.Domain.VehicleBooking", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Destination")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Passenger")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PriceId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("TypeOfVehicleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("luggage")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PriceId");
+
+                    b.HasIndex("TypeOfVehicleId");
+
+                    b.ToTable("VehicleBooking");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1124,25 +1122,19 @@ namespace project.Server.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("project.Shared.Domain.Booking", b =>
+            modelBuilder.Entity("project.Shared.Domain.FlightBooking", b =>
                 {
                     b.HasOne("project.Shared.Domain.Flights", "GoingTo")
                         .WithMany()
-                        .HasForeignKey("GoingToId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("GoingToId");
 
                     b.HasOne("project.Shared.Domain.Flights", "LeavingFrom")
                         .WithMany()
-                        .HasForeignKey("LeavingFromId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LeavingFromId");
 
                     b.HasOne("project.Shared.Domain.Flights", "Price")
                         .WithMany()
-                        .HasForeignKey("PriceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PriceId");
 
                     b.Navigation("GoingTo");
 
@@ -1151,19 +1143,15 @@ namespace project.Server.Migrations
                     b.Navigation("Price");
                 });
 
-            modelBuilder.Entity("project.Shared.Domain.BookingDetails", b =>
+            modelBuilder.Entity("project.Shared.Domain.VehicleBooking", b =>
                 {
                     b.HasOne("project.Shared.Domain.TypeOfVehicle", "Price")
                         .WithMany()
-                        .HasForeignKey("PriceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PriceId");
 
                     b.HasOne("project.Shared.Domain.TypeOfVehicle", "TypeOfVehicle")
                         .WithMany()
-                        .HasForeignKey("TypeOfVehicleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TypeOfVehicleId");
 
                     b.Navigation("Price");
 

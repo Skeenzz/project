@@ -17,10 +17,10 @@ namespace project.Server.Repository
     {
         private readonly ApplicationDbContext _context;
         private IGenericRepository<TypeOfVehicle> _typeOfVehicle;
-        private IGenericRepository<BookingDetails> _bookingDetails;
+        private IGenericRepository<VehicleBooking> _VehicleBookings;
         private IGenericRepository<Flights> _flights;
         private IGenericRepository<Card> _card;
-        private IGenericRepository<Booking> _booking;
+        private IGenericRepository<FlightBooking> _FlightBookings;
 
         private UserManager<ApplicationUser> _userManager;
 
@@ -32,14 +32,18 @@ namespace project.Server.Repository
 
         public IGenericRepository<TypeOfVehicle> TypeOfVehicle
             => _typeOfVehicle ??= new GenericRepository<TypeOfVehicle>(_context);
-        public IGenericRepository<BookingDetails> BookingDetails
-            => _bookingDetails ??= new GenericRepository<BookingDetails>(_context);
+        public IGenericRepository<VehicleBooking> BookingDetails
+            => _VehicleBookings ??= new GenericRepository<VehicleBooking>(_context);
         public IGenericRepository<Flights> Flights
             => _flights ??= new GenericRepository<Flights>(_context);
         public IGenericRepository<Card> Card
             => _card ??= new GenericRepository<Card>(_context);
-        public IGenericRepository<Booking> Booking
-            => _booking ??= new GenericRepository<Booking>(_context);
+        public IGenericRepository<FlightBooking> Booking
+            => _FlightBookings ??= new GenericRepository<FlightBooking>(_context);
+
+        public IGenericRepository<VehicleBooking> VehicleBookings => throw new NotImplementedException();
+
+        public IGenericRepository<FlightBooking> FlightBookings => throw new NotImplementedException();
 
         public void Dispose()
         {

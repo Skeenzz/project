@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace project.Shared.Domain
 {
-    public class BookingDetails : BaseDomainModel
+    public class VehicleBooking : BaseDomainModel
     {
         public DateTime Date { get; set; }
         public DateTime Time { get; set; }
@@ -14,9 +14,9 @@ namespace project.Shared.Domain
         public int luggage { get; set; }
         public string Destination { get; set; }
         public string Address { get; set; }
-        public int TypeOfVehicleId { get; set; }
+        public int? TypeOfVehicleId { get; set; }
         public virtual TypeOfVehicle TypeOfVehicle { get; set; }
-        public int PriceId { get; set; }
+        public int? PriceId { get; set; }
         public virtual TypeOfVehicle Price { get; set; }
     }
 }

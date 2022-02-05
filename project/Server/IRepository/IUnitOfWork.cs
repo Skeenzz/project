@@ -11,9 +11,9 @@ namespace project.Server.IRepository
     {
         Task Save(HttpContext httpContext);
         IGenericRepository<TypeOfVehicle> TypeOfVehicle { get; }
-        IGenericRepository<BookingDetails> BookingDetails { get; }
+        IGenericRepository<VehicleBooking> VehicleBookings { get; }
         IGenericRepository<Flights> Flights { get; }
         IGenericRepository<Card> Card { get; }
-        IGenericRepository<Booking> Booking { get; }
+        IGenericRepository<FlightBooking> FlightBookings { get; }
     }
 }
