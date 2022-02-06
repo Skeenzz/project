@@ -1,4 +1,4 @@
-﻿@page "/Booking"
+@page "/Booking"
 @inject NavigationManager NavigationManager
 @inject HttpClient _client
 @inject IJSRuntime js
@@ -63,7 +63,7 @@ else
                     </td>
                 </tr>
 
-            
+
             }
         </tbody>
     </table>
@@ -73,7 +73,7 @@ else
 
 @if (fBooking == null)
 {
-    <div class="alert alert-info">Loading Vehicles...</div>
+    <div class="alert alert-info">Loading Flights...</div>
 }
 
 else
@@ -81,7 +81,8 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>GoingTo</th>
+                
+                <th>Destination</th>
                 <th>Passenger</th>
                 <th>Price</th>
                 <th>Time</th>
@@ -92,6 +93,7 @@ else
             @foreach (var flightBookings in fBooking)
             {
                 <tr>
+                  
                     <td>@flightBookings.Flights.GoingTo</td>
                     <td>@flightBookings.Passenger</td>
                     <td>@flightBookings.Flights.Price</td>
@@ -101,12 +103,12 @@ else
 
 
                     <td>
-                         <a href="/vehicles/view/@flightBookings.Id" class="btn btn-primary">
+                        <a href="/vehicles/view/@flightBookings.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
-                         </a>
-                         <button class="btn btn-danger" @onclick="@(()=>Delete(flightBookings.Id))">
-                             <span class="oi oi-delete"></span>
-                         </button>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(flightBookings.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
                     </td>
                 </tr>
             }
