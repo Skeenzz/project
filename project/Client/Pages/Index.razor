@@ -1,4 +1,4 @@
-﻿@page "/"
+@page "/"
 @inject NavigationManager NavigationManager
     <head>
         <link href="~/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
@@ -41,7 +41,7 @@
 
     <h3>Home</h3>
 
-    <h5><button class="btn btn-primary" @onclick="Car">Car</button> <button class="btn btn-primary" @onclick="flights">Flights</button> <button class="btn btn-primary" @onclick="Packages">Packages</button>  <button class="btn btn-primary" @onclick="traveltip">Travel Tip</button> <button class="btn btn-primary" @onclick="payment">Payment</button></h5>
+    <h5><button class="btn btn-primary" @onclick="Car">Car</button> <button class="btn btn-primary" @onclick="Flights">Flights</button> <button class="btn btn-primary" @onclick="Packages">Packages</button>  <button class="btn btn-primary" @onclick="Traveltip">Travel Tip</button> <button class="btn btn-primary" @onclick="Booking">Bookings</button></h5>
 
     <body>
         <table class="table">
@@ -58,11 +58,11 @@
 
     </body>
     @code {
-        private void flights(MouseEventArgs e)
+        private void Flights(MouseEventArgs e)
         {
             NavigationManager.NavigateTo("Flight");
         }
-        private void traveltip(MouseEventArgs e)
+        private void Traveltip(MouseEventArgs e)
         {
             NavigationManager.NavigateTo("TravelTip");
         }
@@ -74,9 +74,9 @@
         {
             NavigationManager.NavigateTo("Packages");
         }
-        private void payment(MouseEventArgs e)
+        private void Booking(MouseEventArgs e)
         {
-            NavigationManager.NavigateTo("Payment");
+            NavigationManager.NavigateTo("Booking");
         }
     }
 
