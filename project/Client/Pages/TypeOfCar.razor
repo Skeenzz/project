@@ -1,10 +1,10 @@
-﻿@page "/TypeOfCar/"
+@page "/TypeOfCar/"
 @inject NavigationManager NavigationManager
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
 
-<h3>TypeOfCars</h3>
+<h3>Vehicle Booking</h3>
 <hr />
 <br />
 
@@ -35,6 +35,7 @@
             <ValidationMessage For="@(() => bookingd.Destination)" />
         </div>
     </div>
+
     <div class="form-group">
         <label>Address: </label>
         <div>
@@ -42,6 +43,7 @@
             <ValidationMessage For="@(() => bookingd.Address)" />
         </div>
     </div>
+
     <div class="form-group">
         <label>No.Of Passengers: </label>
         <div>
@@ -49,6 +51,7 @@
             <ValidationMessage For="@(() => bookingd.Passenger)" />
         </div>
     </div>
+
     <div class="form-group">
         <label>No.Of Luggages: </label>
         <div>
@@ -56,6 +59,7 @@
             <ValidationMessage For="@(() => bookingd.luggage)" />
         </div>
     </div>
+
     <div class="form-group">
         <label>Date: </label>
         <div>
@@ -65,7 +69,7 @@
     </div>
     
     <button type="submit" class="btn btn-success btn-block">
-        Payment
+        Book
     </button>
 </EditForm>
 
@@ -82,8 +86,8 @@ else
                 <th>Name</th>
                 <th>Type Of Vehicle</th>
                 <th>Seat</th>
-                <th>Capacity</th>
-                <th>Price</th>
+                <th>Luggage Capacity</th>
+                <th>Price$</th>
             </tr>
         </thead>
         <tbody>
@@ -121,7 +125,7 @@ else
     private async Task CreateBookingDetail()
     {
         await _client.PostAsJsonAsync(Endpoints.VehicleBookingEndpoint, bookingd);
-        NavigationManager.NavigateTo("/payment");
+        NavigationManager.NavigateTo("/booking");
 
     }
 
@@ -129,8 +133,8 @@ else
     {
         NavigationManager.NavigateTo("Car");
     }
-    private void Payment(MouseEventArgs e)
+    private void Booking(MouseEventArgs e)
     {
-        NavigationManager.NavigateTo("Payment");
+        NavigationManager.NavigateTo("Booking");
     }
 }
