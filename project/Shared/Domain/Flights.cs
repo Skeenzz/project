@@ -9,8 +9,7 @@ namespace project.Shared.Domain
 {
     public class Flights : BaseDomainModel
     {
-        [Required]
-        public string LeavingFrom { get; set; }
+        
         [Required]
         public string GoingTo { get; set; }
         [Required]

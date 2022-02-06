@@ -16,8 +16,8 @@ namespace project.Server.Configurations.Entities
                 new Flights
                 {
                     Id = 1,
-                    LeavingFrom = "Singapore",
-                    GoingTo = "japan",
+                   
+                    GoingTo = "Japan",
                     Price = 780.00,
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
@@ -27,7 +27,7 @@ namespace project.Server.Configurations.Entities
                  new Flights
                  {
                      Id = 2,
-                     LeavingFrom = "Singapore",
+                     
                      GoingTo = "USA",
                      Price = 1780.00,
                      DateCreated = DateTime.Now,
@@ -38,8 +38,8 @@ namespace project.Server.Configurations.Entities
                   new Flights
                   {
                       Id = 3,
-                      LeavingFrom = "Singapore",
-                      GoingTo = "china",
+                     
+                      GoingTo = "China",
                       Price = 580.00,
                       DateCreated = DateTime.Now,
                       DateUpdated = DateTime.Now,

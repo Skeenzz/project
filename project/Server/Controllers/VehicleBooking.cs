@@ -39,7 +39,7 @@ namespace CarRentalManagement.Server.Controllers
 
             //Refactored
             //return await _context.VehicleBooking.ToListAsync();
-            var vehicleBooking = await _unitOfWork.VehicleBookings.GetAll(includes: q => q.Include(x => x.TypeOfVehicle).Include(x => x.Price));
+            var vehicleBooking = await _unitOfWork.VehicleBooking.GetAll(includes: q => q.Include(x => x.TypeOfVehicle).Include(x => x.Price));
             return Ok(vehicleBooking);
         }
 
@@ -51,7 +51,7 @@ namespace CarRentalManagement.Server.Controllers
         {
             //Refactored
             //var vehicleBooking = await _context.VehicleBooking.FindAsync(id);
-            var vehicleBooking = await _unitOfWork.VehicleBookings.Get(q => q.Id == id);
+            var vehicleBooking = await _unitOfWork.VehicleBooking.Get(q => q.Id == id);
 
             if (vehicleBooking == null)
             {
@@ -72,7 +72,7 @@ namespace CarRentalManagement.Server.Controllers
             }
             //Refactored
             //_context.Entry(vehicleBooking).State = EntityState.Modified;
-            _unitOfWork.VehicleBookings.Update(vehicleBooking);
+            _unitOfWork.VehicleBooking.Update(vehicleBooking);
 
             try
             {
@@ -108,7 +108,7 @@ namespace CarRentalManagement.Server.Controllers
             // _context.VehicleBooking.Add(vehicleBooking);
             //await _context.SaveChangesAsync();
 
-            await _unitOfWork.VehicleBookings.Insert(vehicleBooking);
+            await _unitOfWork.VehicleBooking.Insert(vehicleBooking);
             await _unitOfWork.Save(HttpContext);
 
             return CreatedAtAction("GetVehicleBooking", new { id = vehicleBooking.Id }, vehicleBooking);
@@ -120,7 +120,7 @@ namespace CarRentalManagement.Server.Controllers
         {
             //Refactored
             //var vehicleBooking = await _context.VehicleBooking.FindAsync(id);
-            var vehicleBooking = await _unitOfWork.VehicleBookings.Get(q => q.Id == id);
+            var vehicleBooking = await _unitOfWork.VehicleBooking.Get(q => q.Id == id);
             if (vehicleBooking == null)
             {
                 return NotFound();
@@ -130,7 +130,7 @@ namespace CarRentalManagement.Server.Controllers
             //_context.VehicleBooking.Remove(vehicleBooking);
             //await _context.SaveChangesAsync();
 
-            await _unitOfWork.VehicleBookings.Delete(id);
+            await _unitOfWork.VehicleBooking.Delete(id);
             await _unitOfWork.Save(HttpContext);
 
             return NoContent();
@@ -143,7 +143,7 @@ namespace CarRentalManagement.Server.Controllers
             //Refactored
             // return _context.VehicleBooking.Any(e => e.Id == id);
 
-            var vehicleBooking = await _unitOfWork.VehicleBookings.Get(q => q.Id == id);
+            var vehicleBooking = await _unitOfWork.VehicleBooking.Get(q => q.Id == id);
             return vehicleBooking != null;
 
         }

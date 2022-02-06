@@ -16,11 +16,11 @@ namespace project.Server.Repository
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
-        private IGenericRepository<TypeOfVehicle> _typeOfVehicle;
-        private IGenericRepository<VehicleBooking> _VehicleBookings;
+        private IGenericRepository<Vehicle> _vehicle;
+        private IGenericRepository<VehicleBooking> _VehicleBooking;
         private IGenericRepository<Flights> _flights;
         private IGenericRepository<Card> _card;
-        private IGenericRepository<FlightBooking> _FlightBookings;
+        private IGenericRepository<FlightBooking> _FlightBooking;
 
         private UserManager<ApplicationUser> _userManager;
 
@@ -30,20 +30,18 @@ namespace project.Server.Repository
             _userManager = userManager;
         }
 
-        public IGenericRepository<TypeOfVehicle> TypeOfVehicle
-            => _typeOfVehicle ??= new GenericRepository<TypeOfVehicle>(_context);
-        public IGenericRepository<VehicleBooking> BookingDetails
-            => _VehicleBookings ??= new GenericRepository<VehicleBooking>(_context);
+        public IGenericRepository<Vehicle> Vehicle
+            => _vehicle ??= new GenericRepository<Vehicle>(_context);
+        public IGenericRepository<VehicleBooking> VehicleBooking
+            => _VehicleBooking ??= new GenericRepository<VehicleBooking>(_context);
         public IGenericRepository<Flights> Flights
             => _flights ??= new GenericRepository<Flights>(_context);
         public IGenericRepository<Card> Card
             => _card ??= new GenericRepository<Card>(_context);
-        public IGenericRepository<FlightBooking> Booking
-            => _FlightBookings ??= new GenericRepository<FlightBooking>(_context);
+        public IGenericRepository<FlightBooking> FlightBooking
+            => _FlightBooking ??= new GenericRepository<FlightBooking>(_context);
 
-        public IGenericRepository<VehicleBooking> VehicleBookings => throw new NotImplementedException();
-
-        public IGenericRepository<FlightBooking> FlightBookings => throw new NotImplementedException();
+       
 
         public void Dispose()
         {

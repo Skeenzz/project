@@ -34,12 +34,12 @@ namespace CarRentalManagement.Server.Controllers
         [HttpGet]
         //Refactored
         // public async Task<ActionResult<IEnumerable<BookingDetails>>> GetBookingDetails()
-        public async Task<IActionResult> GetFlightBookings()
+        public async Task<IActionResult> GetFlightBooking()
         {
 
             //Refactored
             //return await _context.BookingDetails.ToListAsync();
-            var flightBookings = await _unitOfWork.FlightBookings.GetAll(includes: q => q.Include(x =>x.LeavingFrom).Include(x => x.GoingTo).Include(x => x.Price)); 
+            var flightBookings = await _unitOfWork.FlightBooking.GetAll(includes: q => q.Include(x => x.GoingTo).Include(x => x.Price)); 
             return Ok(flightBookings);
         }
 
@@ -47,11 +47,11 @@ namespace CarRentalManagement.Server.Controllers
         [HttpGet("{id}")]
         //Refactored
         //public async Task<ActionResult<BookingDetails>> GetBookingDetails(int id)
-        public async Task<IActionResult> GetFlightBookings(int id)
+        public async Task<IActionResult> GetFlightBooking(int id)
         {
             //Refactored
             //var bookingDetail = await _context.BookingDetails.FindAsync(id);
-            var flightBookings = await _unitOfWork.FlightBookings.Get(q => q.Id == id);
+            var flightBookings = await _unitOfWork.FlightBooking.Get(q => q.Id == id);
 
             if (flightBookings == null)
             {
@@ -64,7 +64,7 @@ namespace CarRentalManagement.Server.Controllers
         // PUT: api/BookingDetails/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFlightBookings(int id, FlightBooking flightBookings)
+        public async Task<IActionResult> PutFlightBooking(int id, FlightBooking flightBookings)
         {
             if (id != flightBookings.Id)
             {
@@ -72,7 +72,7 @@ namespace CarRentalManagement.Server.Controllers
             }
             //Refactored
             //_context.Entry(bookingDetail).State = EntityState.Modified;
-            _unitOfWork.FlightBookings.Update(flightBookings);
+            _unitOfWork.FlightBooking.Update(flightBookings);
 
             try
             {
@@ -84,7 +84,7 @@ namespace CarRentalManagement.Server.Controllers
             {
                 //Refactored
                 //if (!BookingDetailsExists(id))
-                if (!await FlightBookingsExists(id))
+                if (!await FlightBookingExists(id))
                 {
                     return NotFound();
                 }
@@ -102,13 +102,13 @@ namespace CarRentalManagement.Server.Controllers
         // POST: api/BookingDetails
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<FlightBooking>> PostFlightBookings(FlightBooking flightBookings)
+        public async Task<ActionResult<FlightBooking>> PostFlightBooking(FlightBooking flightBookings)
         {
             //Refactored
             // _context.BookingDetails.Add(bookingDetail);
             //await _context.SaveChangesAsync();
 
-            await _unitOfWork.FlightBookings.Insert(flightBookings);
+            await _unitOfWork.FlightBooking.Insert(flightBookings);
             await _unitOfWork.Save(HttpContext);
 
             return CreatedAtAction("GetBookings", new { id = flightBookings.Id }, flightBookings);
@@ -116,11 +116,11 @@ namespace CarRentalManagement.Server.Controllers
 
         // DELETE: api/BookingDetails/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFlightBookings(int id)
+        public async Task<IActionResult> DeleteFlightBooking(int id)
         {
             //Refactored
             //var bookingDetail = await _context.BookingDetails.FindAsync(id);
-            var flightBookings = await _unitOfWork.FlightBookings.Get(q => q.Id == id);
+            var flightBookings = await _unitOfWork.FlightBooking.Get(q => q.Id == id);
             if (flightBookings == null)
             {
                 return NotFound();
@@ -130,7 +130,7 @@ namespace CarRentalManagement.Server.Controllers
             //_context.BookingDetails.Remove(bookingDetail);
             //await _context.SaveChangesAsync();
 
-            await _unitOfWork.FlightBookings.Delete(id);
+            await _unitOfWork.FlightBooking.Delete(id);
             await _unitOfWork.Save(HttpContext);
 
             return NoContent();
@@ -138,12 +138,12 @@ namespace CarRentalManagement.Server.Controllers
 
         //Refactored
         // private bool BookingDetailsExists(int id)
-        private async Task<bool> FlightBookingsExists(int id)
+        private async Task<bool> FlightBookingExists(int id)
         {
             //Refactored
             // return _context.BookingDetails.Any(e => e.Id == id);
 
-            var flightBookings = await _unitOfWork.FlightBookings.Get(q => q.Id == id);
+            var flightBookings = await _unitOfWork.FlightBooking.Get(q => q.Id == id);
             return flightBookings != null;
 
         }

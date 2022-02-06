@@ -8,12 +8,12 @@ using project.Shared.Domain;
 
 namespace project.Server.Configurations.Entities
 {
-    public class TypeOfVehicleSeedConfiguration : IEntityTypeConfiguration<TypeOfVehicle>
+    public class TypeOfVehicleSeedConfiguration : IEntityTypeConfiguration<Vehicle>
     {
-        public void Configure(EntityTypeBuilder<TypeOfVehicle> builder)
+        public void Configure(EntityTypeBuilder<Vehicle> builder)
         {
             builder.HasData(
-                new TypeOfVehicle
+                new Vehicle
                 {
                     Id = 1,
                     Name = "Mitsubishi Mirage",
@@ -26,7 +26,7 @@ namespace project.Server.Configurations.Entities
                     CreatedBy = "System",
                     UpdatedBy = "System"
                 },
-                new TypeOfVehicle
+                new Vehicle
                 {
                     Id = 2,
                     Name = "Nissan Versa",
@@ -39,7 +39,7 @@ namespace project.Server.Configurations.Entities
                     CreatedBy = "System",
                     UpdatedBy = "System"
                 },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 3,
                      Name = "Toyota Corolla",
@@ -52,7 +52,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 4,
                      Name = "Volkswagen Jetta",
@@ -65,7 +65,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 5,
                      Name = "Chevy Malibu",
@@ -78,7 +78,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 6,
                      Name = "Ford Mustang Convertible",
@@ -91,7 +91,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 7,
                      Name = "Dodge Challenger",
@@ -104,7 +104,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 8,
                      Name = "INFINITI Q50",
@@ -117,7 +117,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 9,
                      Name = " Audi A5 Sportback",
@@ -130,7 +130,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 10,
                      Name = "BMW 228i Gran Coupe",
@@ -143,7 +143,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 11,
                      Name = "Tesla Model S",
@@ -156,7 +156,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 12,
                      Name = "Chevrolet Impala",
@@ -169,7 +169,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 13,
                      Name = "BMW 5 Series ",
@@ -182,7 +182,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 14,
                      Name = "Nissan Maxima ",
@@ -195,7 +195,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 15,
                      Name = "Chrysler 300",
@@ -208,7 +208,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 16,
                      Name = "Maserati Ghibli",
@@ -221,7 +221,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                  new TypeOfVehicle
+                  new Vehicle
                   {
                       Id = 17,
                       Name = "Mercedes AMG E53",
@@ -234,7 +234,7 @@ namespace project.Server.Configurations.Entities
                       CreatedBy = "System",
                       UpdatedBy = "System"
                   },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 18,
                      Name = "BMW 7 Series",
@@ -247,7 +247,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 19,
                      Name = "Mercedes Benz S Class",
@@ -260,7 +260,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 20,
                      Name = "Porsche Panamera",
@@ -273,7 +273,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                  new TypeOfVehicle
+                  new Vehicle
                   {
                       Id = 21,
                       Name = "Nissan Kicks",
@@ -286,7 +286,7 @@ namespace project.Server.Configurations.Entities
                       CreatedBy = "System",
                       UpdatedBy = "System"
                   },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 22,
                      Name = "Nissan Rogue",
@@ -299,7 +299,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                  new TypeOfVehicle
+                  new Vehicle
                   {
                       Id = 23,
                       Name = "Ford Edge ",
@@ -312,7 +312,7 @@ namespace project.Server.Configurations.Entities
                       CreatedBy = "System",
                       UpdatedBy = "System"
                   },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 24,
                      Name = "Chevrolet Tahoe ",
@@ -325,7 +325,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 25,
                      Name = "Infiniti QX80",
@@ -338,7 +338,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 26,
                      Name = "Cadillac XT4",
@@ -351,7 +351,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 27,
                      Name = "Volkswagen Atlas",
@@ -364,7 +364,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 28,
                      Name = "Mercedes Benz GLE",
@@ -377,7 +377,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                  new TypeOfVehicle
+                  new Vehicle
                   {
                       Id = 29,
                       Name = "Chevy Suburban",
@@ -390,7 +390,7 @@ namespace project.Server.Configurations.Entities
                       CreatedBy = "System",
                       UpdatedBy = "System"
                   },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 30,
                      Name = "BMW X3 ",
@@ -403,7 +403,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                  new TypeOfVehicle
+                  new Vehicle
                   {
                       Id = 31,
                       Name = "Chrysler Pacifica ",
@@ -416,7 +416,7 @@ namespace project.Server.Configurations.Entities
                       CreatedBy = "System",
                       UpdatedBy = "System"
                   },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 32,
                      Name = "Toyota Sienna",
@@ -429,7 +429,7 @@ namespace project.Server.Configurations.Entities
                      CreatedBy = "System",
                      UpdatedBy = "System"
                  },
-                  new TypeOfVehicle
+                  new Vehicle
                   {
                       Id = 33,
                       Name = "Ford Transit Wagon",
@@ -443,7 +443,7 @@ namespace project.Server.Configurations.Entities
                       UpdatedBy = "System"
 
                   },
-                 new TypeOfVehicle
+                 new Vehicle
                  {
                      Id = 34,
                      Name = "Ford Transit Wagon",

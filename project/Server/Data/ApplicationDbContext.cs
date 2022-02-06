@@ -19,7 +19,7 @@ namespace project.Server.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
-        public DbSet<TypeOfVehicle> TypeOfVehicles { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Card> Card { get; set; }
         public DbSet<FlightBooking> FlightBooking { get; set; }
         public DbSet<VehicleBooking> VehicleBooking { get; set; }

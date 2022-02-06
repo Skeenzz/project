@@ -12,10 +12,10 @@
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div class="form-group">
-        <label>TypeOfVehicle: </label>
+        <label>Vehicle: </label>
         <div>
             <InputSelect @bind-Value="bookingd.TypeOfVehicleId" class="form-control">
-                <option value="">-- Select TypeOfVehicle --</option>
+                <option value="">-- Select Vehicle --</option>
                 @if (typeofVehicle != null)
                 {
                     foreach (var typeofvehicle in typeofVehicle)
@@ -27,22 +27,7 @@
             <ValidationMessage For="@(() => bookingd.TypeOfVehicleId)" />
         </div>
     </div>
-    <div class="form-group">
-        <label>TypeOfVehicle: </label>
-        <div>
-            <InputSelect @bind-Value="bookingd.PriceId" class="form-control">
-                <option value="">-- Select TypeOfVehicle --</option>
-                @if (typeofVehicle != null)
-                {
-                    foreach (var price in typeofVehicle)
-                    {
-                        <option value="@price.Id">@price.Price</option>
-                    }
-                }
-            </InputSelect>
-            <ValidationMessage For="@(() => bookingd.PriceId)" />
-        </div>
-    </div>
+    
     <div class="form-group">
         <label>Destination: </label>
         <div>
@@ -58,14 +43,14 @@
         </div>
     </div>
     <div class="form-group">
-        <label>Amount of Passenger: </label>
+        <label>No.Of Passengers: </label>
         <div>
             <InputNumber @bind-Value="@bookingd.Passenger" class="form-control" />
             <ValidationMessage For="@(() => bookingd.Passenger)" />
         </div>
     </div>
     <div class="form-group">
-        <label>Amount of Passenger: </label>
+        <label>No.Of Luggages: </label>
         <div>
             <InputNumber @bind-Value="@bookingd.luggage" class="form-control" />
             <ValidationMessage For="@(() => bookingd.luggage)" />
@@ -78,13 +63,7 @@
             <ValidationMessage For="@(() => bookingd.Date)" />
         </div>
     </div>
-    <div class="form-group">
-        <label>Time: </label>
-        <div>
-            <InputDate @bind-Value="@bookingd.Time" class="form-control" />
-            <ValidationMessage For="@(() => bookingd.Time)" />
-        </div>
-    </div>
+    
     <button type="submit" class="btn btn-success btn-block">
         Payment
     </button>
@@ -127,21 +106,21 @@ else
         </tbody>
     </table>}
 @code {
-    private List<TypeOfVehicle> typeOfVehicle;
+    private List<Vehicle> typeOfVehicle;
 
     protected async override Task OnInitializedAsync()
     {
-        typeOfVehicle = await _client.GetFromJsonAsync<List<TypeOfVehicle>>($"{Endpoints.TypeOfVehiclesEndpoint}");
-        typeofVehicle = await _client.GetFromJsonAsync<List<TypeOfVehicle>>($"{Endpoints.TypeOfVehiclesEndpoint}");
+        typeOfVehicle = await _client.GetFromJsonAsync<List<Vehicle>>($"{Endpoints.TypeOfVehiclesEndpoint}");
+        typeofVehicle = await _client.GetFromJsonAsync<List<Vehicle>>($"{Endpoints.TypeOfVehiclesEndpoint}");
     }
 
     VehicleBooking bookingd = new VehicleBooking();
 
-    private IList<TypeOfVehicle> typeofVehicle;
+    private IList<Vehicle> typeofVehicle;
 
     private async Task CreateBookingDetail()
     {
-        await _client.PostAsJsonAsync(Endpoints.BookingdetailEndpoint, bookingd);
+        await _client.PostAsJsonAsync(Endpoints.VehicleBookingEndpoint, bookingd);
         NavigationManager.NavigateTo("/payment");
 
     }

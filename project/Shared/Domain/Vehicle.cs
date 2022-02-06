@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace project.Shared.Domain
 {
-    public class TypeOfVehicle : BaseDomainModel
+    public class Vehicle : BaseDomainModel
     {
         [Required]
         public string Name { get; set; }

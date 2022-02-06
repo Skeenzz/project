@@ -4,37 +4,7 @@
 @inject IJSRuntime js
 @attribute [Authorize]
 
-<div id="test" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#test" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#test" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#test" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        <button type="button" data-bs-target="#test" data-bs-slide-to="3" aria-label="Slide 4"></button>
-    </div>
-    <div class="carousel-inner">
-        <div class="carousel-item active ">
-            <img src="/Images/Main Menu/City.jpg" class=" d-block w-100  " alt="1">
-        </div>
-        <div class="carousel-item">
-            <img src="/Images/Main Menu/Flight.jpg" class=" d-block w-100  " alt="2">
-        </div>
-        <div class="carousel-item ">
-            <img src="/Images/Main Menu/MiniVan.jpg" class="d-block w-100  " alt="3">
-        </div>
-        <div class="carousel-item">
-            <img src="/Images/Main Menu/NightScape.jpg" class="d-block w-100  " alt="4">
-        </div>
-    </div>
-    <a class="carousel-control-prev" type="button" data-bs-target="#test" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-    </a>
-    <a class="carousel-control-next" type="button" data-bs-target="#test" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-    </a>
 
-</div>
 
 
 <h3>Flights</h3>
@@ -44,26 +14,11 @@
 <EditForm Model="@booking" OnValidSubmit="CreateBooking">
     <DataAnnotationsValidator />
     <ValidationSummary />
+    
     <div class="form-group">
-        <label>LeavingFrom: </label>
+        <label>Destination: </label>
         <div>
-            <InputSelect @bind-Value="booking.LeavingFromId" class="form-control">
-                <option value="">-- Select LeavingFrom --</option>
-                @if (flights != null)
-                {
-                    foreach (var leavingfrom in flights)
-                    {
-                        <option value="@leavingfrom.Id">@leavingfrom.LeavingFrom</option>
-                    }
-                }
-            </InputSelect>
-            <ValidationMessage For="@(() => booking.LeavingFromId)" />
-        </div>
-    </div>
-    <div class="form-group">
-        <label>LeavingFrom: </label>
-        <div>
-            <InputSelect @bind-Value="booking.GoingToId" class="form-control">
+            <InputSelect @bind-Value="booking.FlightId" class="form-control">
                 <option value="">-- Select GoingToId --</option>
                 @if (flights != null)
                 {
@@ -73,25 +28,10 @@
                     }
                 }
             </InputSelect>
-            <ValidationMessage For="@(() => booking.GoingToId)" />
+            <ValidationMessage For="@(() => booking.FlightId)" />
         </div>
     </div>
-    <div class="form-group">
-        <label>TypeOfVehicle: </label>
-        <div>
-            <InputSelect @bind-Value="booking.PriceId" class="form-control">
-                <option value="">-- Select TypeOfVehicle --</option>
-                @if (flights != null)
-                {
-                    foreach (var price in flights)
-                    {
-                        <option value="@price.Id">@price.Price</option>
-                    }
-                }
-            </InputSelect>
-            <ValidationMessage For="@(() => booking.PriceId)" />
-        </div>
-    </div>
+    
     <div class="form-group">
         <label>Amount of Passenger: </label>
         <div>
@@ -129,7 +69,6 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>Leaving From</th>
                 <th>Going To</th>
                 <th>Price</th>
             </tr>
@@ -138,7 +77,6 @@ else
             @foreach (var flights in flight)
              {
                 <tr>
-                    <td>@flights.LeavingFrom</td>
                     <td>@flights.GoingTo</td>
                     <td>@flights.Price</td>
 
@@ -166,7 +104,7 @@ else
 
     private async Task CreateBooking()
     {
-        await _client.PostAsJsonAsync(Endpoints.BookingEndpoint, booking);
+        await _client.PostAsJsonAsync(Endpoints.FlightBookingEndpoint, booking);
         NavigationManager.NavigateTo("/payment");
 
     }

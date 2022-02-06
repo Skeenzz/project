@@ -9,8 +9,8 @@ namespace project.Client.Static
     {
         private static readonly string Prefix = "api";
         public static readonly string FlightsEndpoint = $"{Prefix}/Flights";
-        public static readonly string BookingdetailEndpoint = $"{Prefix}/Bookingdetails";
-        public static readonly string BookingEndpoint = $"{Prefix}/Booking";
+        public static readonly string VehicleBookingEndpoint = $"{Prefix}/VehicleBooking";
+        public static readonly string FlightBookingEndpoint = $"{Prefix}/FlightBooking";
         public static readonly string TypeOfVehiclesEndpoint = $"{Prefix}/TypeOfVehicle";
         public static readonly string CardEndpoint = $"{Prefix}/Card";
     }

@@ -10,10 +10,10 @@ namespace project.Server.IRepository
     public interface IUnitOfWork : IDisposable
     {
         Task Save(HttpContext httpContext);
-        IGenericRepository<TypeOfVehicle> TypeOfVehicle { get; }
-        IGenericRepository<VehicleBooking> VehicleBookings { get; }
+        IGenericRepository<Vehicle> Vehicle { get; }
+        IGenericRepository<VehicleBooking> VehicleBooking { get; }
         IGenericRepository<Flights> Flights { get; }
         IGenericRepository<Card> Card { get; }
-        IGenericRepository<FlightBooking> FlightBookings { get; }
+        IGenericRepository<FlightBooking> FlightBooking { get; }
     }
 }

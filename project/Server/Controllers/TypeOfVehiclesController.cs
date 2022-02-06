@@ -33,25 +33,25 @@ namespace CarRentalManagement.Server.Controllers
         // GET: api/TypeOfVehicles
         [HttpGet]
         //Refactored
-        // public async Task<ActionResult<IEnumerable<TypeOfVehicle>>> GetTypeOfVehicles()
+        // public async Task<ActionResult<IEnumerable<Vehicle>>> GetTypeOfVehicles()
         public async Task<IActionResult> GetTypeOfVehicles()
         {
 
             //Refactored
             //return await _context.TypeOfVehicles.ToListAsync();
-            var typeOfVehicle = await _unitOfWork.TypeOfVehicle.GetAll();
+            var typeOfVehicle = await _unitOfWork.Vehicle.GetAll();
             return Ok(typeOfVehicle);
         }
 
         // GET: api/TypeOfVehicles/5
         [HttpGet("{id}")]
         //Refactored
-        //public async Task<ActionResult<TypeOfVehicle>> GetTypeOfVehicle(int id)
+        //public async Task<ActionResult<Vehicle>> GetTypeOfVehicle(int id)
         public async Task<IActionResult> GetTypeOfVehicles(int id)
         {
             //Refactored
-            //var typeOfVehicle = await _context.TypeOfVehicle.FindAsync(id);
-            var typeOfVehicle = await _unitOfWork.TypeOfVehicle.Get(q => q.Id == id);
+            //var typeOfVehicle = await _context.Vehicle.FindAsync(id);
+            var typeOfVehicle = await _unitOfWork.Vehicle.Get(q => q.Id == id);
 
             if (typeOfVehicle == null)
             {
@@ -61,10 +61,10 @@ namespace CarRentalManagement.Server.Controllers
             return Ok(typeOfVehicle);
         }
 
-        // PUT: api/TypeOfVehicle/5
+        // PUT: api/Vehicle/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTypeOfVehicles(int id, TypeOfVehicle typeOfVehicle)
+        public async Task<IActionResult> PutTypeOfVehicles(int id, Vehicle typeOfVehicle)
         {
             if (id != typeOfVehicle.Id)
             {
@@ -72,7 +72,7 @@ namespace CarRentalManagement.Server.Controllers
             }
             //Refactored
             //_context.Entry(typeOfVehicle).State = EntityState.Modified;
-            _unitOfWork.TypeOfVehicle.Update(typeOfVehicle);
+            _unitOfWork.Vehicle.Update(typeOfVehicle);
 
             try
             {
@@ -99,38 +99,38 @@ namespace CarRentalManagement.Server.Controllers
 
 
 
-        // POST: api/TypeOfVehicle
+        // POST: api/Vehicle
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<TypeOfVehicle>> PostTypeOfVehicles(TypeOfVehicle typeOfVehicle)
+        public async Task<ActionResult<Vehicle>> PostTypeOfVehicles(Vehicle typeOfVehicle)
         {
             //Refactored
-            // _context.TypeOfVehicle.Add(typeOfVehicle);
+            // _context.Vehicle.Add(typeOfVehicle);
             //await _context.SaveChangesAsync();
 
-            await _unitOfWork.TypeOfVehicle.Insert(typeOfVehicle);
+            await _unitOfWork.Vehicle.Insert(typeOfVehicle);
             await _unitOfWork.Save(HttpContext);
 
             return CreatedAtAction("GetTypeOfVehicles", new { id = typeOfVehicle.Id }, typeOfVehicle);
         }
 
-        // DELETE: api/TypeOfVehicle/5
+        // DELETE: api/Vehicle/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTypeOfVehicles(int id)
         {
             //Refactored
-            //var typeOfVehicle = await _context.TypeOfVehicle.FindAsync(id);
-            var typeOfVehicle = await _unitOfWork.TypeOfVehicle.Get(q => q.Id == id);
+            //var typeOfVehicle = await _context.Vehicle.FindAsync(id);
+            var typeOfVehicle = await _unitOfWork.Vehicle.Get(q => q.Id == id);
             if (typeOfVehicle == null)
             {
                 return NotFound();
             }
 
             //Refactored
-            //_context.TypeOfVehicle.Remove(typeOfVehicle);
+            //_context.Vehicle.Remove(typeOfVehicle);
             //await _context.SaveChangesAsync();
 
-            await _unitOfWork.TypeOfVehicle.Delete(id);
+            await _unitOfWork.Vehicle.Delete(id);
             await _unitOfWork.Save(HttpContext);
 
             return NoContent();
@@ -141,9 +141,9 @@ namespace CarRentalManagement.Server.Controllers
         private async Task<bool> TypeOfVehicleExists(int id)
         {
             //Refactored
-            // return _context.TypeOfVehicle.Any(e => e.Id == id);
+            // return _context.Vehicle.Any(e => e.Id == id);
 
-            var typeOfVehicle = await _unitOfWork.TypeOfVehicle.Get(q => q.Id == id);
+            var typeOfVehicle = await _unitOfWork.Vehicle.Get(q => q.Id == id);
             return typeOfVehicle != null;
 
         }

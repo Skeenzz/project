@@ -19,10 +19,10 @@
 <br />
 <br />
 
-=======
+
 <p>Vehicles Booking</p>
 
-@if (bookingDetails == null)
+@if (vBooking == null)
 {
     <div class="alert alert-info">Loading Vehicles...</div>
 }
@@ -38,52 +38,32 @@ else
                 <th>Address</th>
                 <th>Passenger</th>
                 <th>luggage</th>
-                <th>Time</th>
                 <th>Date</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var bDetails in bookingDetails)
+            @foreach (var vehicleBookings in vBooking)
             {
                 <tr>
-                    <td>@bDetails.TypeOfVehicle.Name</td>
-                    <td>@bDetails.TypeOfVehicle.Price</td>
-                    <td>@bDetails.Destination</td>
-                    <td>@bDetails.Address</td>
-                    <td>@bDetails.Passenger</td>
-                    <td>@bDetails.luggage</td>
-                    <td>@bDetails.Time </td>
-                    <td>@bDetails.Date.ToString("dd MMMM yyyy")</td>
+                    <td>@vehicleBookings.TypeOfVehicle.Name</td>
+                    <td>@vehicleBookings.TypeOfVehicle.Price</td>
+                    <td>@vehicleBookings.Destination</td>
+                    <td>@vehicleBookings.Address</td>
+                    <td>@vehicleBookings.Passenger</td>
+                    <td>@vehicleBookings.luggage</td>
+                    <td>@vehicleBookings.Date.ToString("dd MMMM yyyy")</td>
 
                     <td>
-                        <a href="/vehicles/view/@bDetails.Id" class="btn btn-primary">
+                        <a href="/vehicles/view/@vehicleBookings.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete_2(bDetails.Id))">
+                        <button class="btn btn-danger" @onclick="@(()=>Delete_2(vehicleBookings.Id))">
                             <span class="oi oi-delete"></span>
                         </button>
                     </td>
                 </tr>
 
-            <tr>
-                <td>@bDetails.TypeOfVehicle</td>
-                <td>@bDetails.Price</td>
-                <td>@bDetails.Destination</td>
-                <td>@bDetails.Address</td>
-                <td>@bDetails.Passenger</td>
-                <td>@bDetails.luggage</td>
-                <td>@bDetails.Time </td>
-                <td>@bDetails.Date.ToString("dd MMMM yyyy")</td>
-
-                <td>
-                    <a href="/vehicles/view/@bDetails.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete_2(bDetails.Id))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
-            </tr>
+            
             }
         </tbody>
     </table>
@@ -91,7 +71,7 @@ else
 <p>Flight Booking</p>
 
 
-@if (booking == null)
+@if (fBooking == null)
 {
     <div class="alert alert-info">Loading Vehicles...</div>
 }
@@ -101,7 +81,6 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>LeavingFrom</th>
                 <th>GoingTo</th>
                 <th>Passenger</th>
                 <th>Price</th>
@@ -110,24 +89,24 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var bookings in booking)
+            @foreach (var flightBookings in fBooking)
             {
                 <tr>
-                    <td>@bookings.LeavingFrom.LeavingFrom</td>
-                    <td>@bookings.GoingTo.GoingTo</td>
-                    <td>@bookings.Passenger</td>
-                    <td>@bookings.Price.Price</td>
-                    <td>@bookings.Departing.ToString("dd MMMM yyyy")</td>
-                    <td>@bookings.Returning.ToString("dd MMMM yyyy")</td>
-                
+                    <td>@flightBookings.Flights.GoingTo</td>
+                    <td>@flightBookings.Passenger</td>
+                    <td>@flightBookings.Flights.Price</td>
+                    <td>@flightBookings.Departing.ToString("dd MMMM yyyy")</td>
+                    <td>@flightBookings.Returning.ToString("dd MMMM yyyy")</td>
+
+
 
                     <td>
-                        <a href="/vehicles/view/@bookings.Id" class="btn btn-primary">
+                         <a href="/vehicles/view/@flightBookings.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
-                        </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(bookings.Id))">
-                            <span class="oi oi-delete"></span>
-                        </button>
+                         </a>
+                         <button class="btn btn-danger" @onclick="@(()=>Delete(flightBookings.Id))">
+                             <span class="oi oi-delete"></span>
+                         </button>
                     </td>
                 </tr>
             }
@@ -136,33 +115,33 @@ else
 }
 
 @code {
-    private List<VehicleBooking> bookingDetails;
+    private List<VehicleBooking> vBooking;
 
-    private List<FlightBooking> booking;
+    private List<FlightBooking> fBooking;
 
     protected async override Task OnInitializedAsync()
     {
-        bookingDetails = await _client.GetFromJsonAsync<List<VehicleBooking>>($"{Endpoints.BookingdetailEndpoint}");
-        booking = await _client.GetFromJsonAsync<List<FlightBooking>>($"{Endpoints.BookingEndpoint}");
+        vBooking = await _client.GetFromJsonAsync<List<VehicleBooking>>($"{Endpoints.VehicleBookingEndpoint}");
+        fBooking = await _client.GetFromJsonAsync<List<FlightBooking>>($"{Endpoints.FlightBookingEndpoint}");
     }
 
-    async Task Delete(int bookingId)
+    async Task Delete(int flightBookingId)
     {
-        var bookings = booking.First(q => q.Id == bookingId);
-        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {bookings.Id}? ");
+        var flightBookings = fBooking.First(q => q.Id == flightBookingId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {flightBookings.Id}? ");
         if (confirm)
         {
-            await _client.DeleteAsync($"{Endpoints.BookingEndpoint}/{bookingId}");
+            await _client.DeleteAsync($"{Endpoints.FlightBookingEndpoint}/{flightBookingId}");
             await OnInitializedAsync();
         }
     }
-    async Task Delete_2(int bookingdetailId)
+    async Task Delete_2(int flightBookingdetailId)
     {
-        var bDetails = bookingDetails.First(q => q.Id == bookingdetailId);
-        var confirms = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {bDetails.Id}? ");
+        var vehicleBookings = vBooking.First(q => q.Id == flightBookingdetailId);
+        var confirms = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {vehicleBookings.Id}? ");
         if (confirms)
         {
-            await _client.DeleteAsync($"{Endpoints.BookingdetailEndpoint}/{bookingdetailId}");
+            await _client.DeleteAsync($"{Endpoints.VehicleBookingEndpoint}/{flightBookingdetailId}");
             await OnInitializedAsync();
         }
     }
