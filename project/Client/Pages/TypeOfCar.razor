@@ -4,6 +4,7 @@
 @inject IJSRuntime js
 @attribute [Authorize]
 
+
 <h3>Vehicle Booking</h3>
 <hr />
 <br />
@@ -27,7 +28,7 @@
             <ValidationMessage For="@(() => bookingd.VehiclesId)" />
         </div>
     </div>
-    
+
     <div class="form-group">
         <label>Destination: </label>
         <div>
@@ -67,7 +68,7 @@
             <ValidationMessage For="@(() => bookingd.Date)" />
         </div>
     </div>
-    
+
     <button type="submit" class="btn btn-success btn-block">
         Book
     </button>
@@ -114,6 +115,7 @@ else
 
     protected async override Task OnInitializedAsync()
     {
+       
         typeOfVehicle = await _client.GetFromJsonAsync<List<Vehicle>>($"{Endpoints.TypeOfVehiclesEndpoint}");
         typeofVehicle = await _client.GetFromJsonAsync<List<Vehicle>>($"{Endpoints.TypeOfVehiclesEndpoint}");
     }
@@ -137,4 +139,6 @@ else
     {
         NavigationManager.NavigateTo("Booking");
     }
+  
+
 }

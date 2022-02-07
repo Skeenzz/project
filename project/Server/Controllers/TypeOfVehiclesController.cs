@@ -36,7 +36,7 @@ namespace CarRentalManagement.Server.Controllers
         // public async Task<ActionResult<IEnumerable<Vehicle>>> GetTypeOfVehicles()
         public async Task<IActionResult> GetTypeOfVehicles()
         {
-
+           
             //Refactored
             //return await _context.TypeOfVehicles.ToListAsync();
             var typeOfVehicle = await _unitOfWork.Vehicle.GetAll();
