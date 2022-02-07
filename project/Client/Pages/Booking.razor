@@ -45,8 +45,8 @@ else
             @foreach (var vehicleBookings in vBooking)
             {
                 <tr>
-                    <td>@vehicleBookings.TypeOfVehicle.Name</td>
-                    <td>@vehicleBookings.TypeOfVehicle.Price</td>
+                    <td>@vehicleBookings.Vehicles.Name</td>
+                    <td>@vehicleBookings.Vehicles.Price</td>
                     <td>@vehicleBookings.Destination</td>
                     <td>@vehicleBookings.Address</td>
                     <td>@vehicleBookings.Passenger</td>
@@ -81,7 +81,7 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
-                
+                <th>Departure</th>
                 <th>Destination</th>
                 <th>Passenger</th>
                 <th>Price</th>
@@ -93,7 +93,7 @@ else
             @foreach (var flightBookings in fBooking)
             {
                 <tr>
-                  
+                    <td>Singapore</td>
                     <td>@flightBookings.Flights.GoingTo</td>
                     <td>@flightBookings.Passenger</td>
                     <td>@flightBookings.Flights.Price</td>

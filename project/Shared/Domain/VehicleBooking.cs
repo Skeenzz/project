@@ -13,9 +13,7 @@ namespace project.Shared.Domain
         public int luggage { get; set; }
         public string Destination { get; set; }
         public string Address { get; set; }
-        public int? TypeOfVehicleId { get; set; }
-        public virtual Vehicle TypeOfVehicle { get; set; }
-        public int? PriceId { get; set; }
-        public virtual Vehicle Price { get; set; }
+        public int? VehiclesId { get; set; }
+        public virtual Vehicle Vehicles { get; set; }
     }
 }

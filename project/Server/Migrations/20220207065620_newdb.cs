@@ -256,10 +256,7 @@ namespace project.Server.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Passenger = table.Column<int>(type: "int", nullable: false),
-                    FlightId = table.Column<int>(type: "int", nullable: true),
                     FlightsId = table.Column<int>(type: "int", nullable: true),
-                    PriceId = table.Column<int>(type: "int", nullable: true),
-                    GoingToId = table.Column<int>(type: "int", nullable: true),
                     Departing = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Returning = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -276,18 +273,6 @@ namespace project.Server.Migrations
                         principalTable: "Flights",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FlightBooking_Flights_GoingToId",
-                        column: x => x.GoingToId,
-                        principalTable: "Flights",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_FlightBooking_Flights_PriceId",
-                        column: x => x.PriceId,
-                        principalTable: "Flights",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -301,8 +286,7 @@ namespace project.Server.Migrations
                     luggage = table.Column<int>(type: "int", nullable: false),
                     Destination = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TypeOfVehicleId = table.Column<int>(type: "int", nullable: true),
-                    PriceId = table.Column<int>(type: "int", nullable: true),
+                    VehiclesId = table.Column<int>(type: "int", nullable: true),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -312,14 +296,8 @@ namespace project.Server.Migrations
                 {
                     table.PrimaryKey("PK_VehicleBooking", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_VehicleBooking_Vehicles_PriceId",
-                        column: x => x.PriceId,
-                        principalTable: "Vehicles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_VehicleBooking_Vehicles_TypeOfVehicleId",
-                        column: x => x.TypeOfVehicleId,
+                        name: "FK_VehicleBooking_Vehicles_VehiclesId",
+                        column: x => x.VehiclesId,
                         principalTable: "Vehicles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -330,14 +308,14 @@ namespace project.Server.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "ad2bcf0c-20db-474f-8407-5a6b159518ba", "a8d5af15-70b2-4228-82c7-7ca6d4dac719", "Administrator", "ADMINISTRATOR" },
-                    { "bd2bcf0c-20db-474f-8407-5a6b159518bb", "5e96405d-47c7-4f82-9ec1-5806053caad8", "User", "USER" }
+                    { "ad2bcf0c-20db-474f-8407-5a6b159518ba", "68be161d-659b-46be-a1e5-ed3f410b1287", "Administrator", "ADMINISTRATOR" },
+                    { "bd2bcf0c-20db-474f-8407-5a6b159518bb", "430bfb0c-7cd4-4261-a5b4-1d2b83a4f566", "User", "USER" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "532ba015-b055-4346-9582-db83fcd7826f", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN", "AQAAAAEAACcQAAAAEL7Q6s5GQrW9EM3oNrfdL6VBtTfWJaSKZWwjUBXCPWhxCGVSBEJGEY8vmjLVAX8bzg==", null, false, "c6c7f3a2-d4c1-4edc-aa88-e543782ff14f", false, "Admin" });
+                values: new object[] { "3781efa7-66dc-47f0-860f-e506d04102e4", 0, "db4f2494-4a13-4326-a4b1-dfe2ebb1460a", "admin@localhost.com", false, "Admin", "User", false, null, "ADMIN@LOCALHOST.COM", "ADMIN", "AQAAAAEAACcQAAAAEIMKyGWoAEzFTOj9Q/BPHwJr73MWBpi8fRxNeDtZ4/QQ132nbne7/nPfUSYi6LnXSA==", null, false, "a74dfb59-4da8-45aa-add0-fcde0ffdf711", false, "Admin" });
 
             migrationBuilder.InsertData(
                 table: "Card",
@@ -353,9 +331,9 @@ namespace project.Server.Migrations
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "GoingTo", "Price", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "System", new DateTime(2022, 2, 6, 16, 39, 15, 290, DateTimeKind.Local).AddTicks(9387), new DateTime(2022, 2, 6, 16, 39, 15, 290, DateTimeKind.Local).AddTicks(9394), "Japan", 780.0, "System" },
-                    { 2, "System", new DateTime(2022, 2, 6, 16, 39, 15, 290, DateTimeKind.Local).AddTicks(9398), new DateTime(2022, 2, 6, 16, 39, 15, 290, DateTimeKind.Local).AddTicks(9399), "USA", 1780.0, "System" },
-                    { 3, "System", new DateTime(2022, 2, 6, 16, 39, 15, 290, DateTimeKind.Local).AddTicks(9400), new DateTime(2022, 2, 6, 16, 39, 15, 290, DateTimeKind.Local).AddTicks(9401), "China", 580.0, "System" }
+                    { 1, "System", new DateTime(2022, 2, 7, 14, 56, 20, 284, DateTimeKind.Local).AddTicks(4739), new DateTime(2022, 2, 7, 14, 56, 20, 284, DateTimeKind.Local).AddTicks(4747), "Japan", 780.0, "System" },
+                    { 2, "System", new DateTime(2022, 2, 7, 14, 56, 20, 284, DateTimeKind.Local).AddTicks(4750), new DateTime(2022, 2, 7, 14, 56, 20, 284, DateTimeKind.Local).AddTicks(4751), "USA", 1780.0, "System" },
+                    { 3, "System", new DateTime(2022, 2, 7, 14, 56, 20, 284, DateTimeKind.Local).AddTicks(4753), new DateTime(2022, 2, 7, 14, 56, 20, 284, DateTimeKind.Local).AddTicks(4754), "China", 580.0, "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -363,40 +341,40 @@ namespace project.Server.Migrations
                 columns: new[] { "Id", "Capacity", "CreatedBy", "DateCreated", "DateUpdated", "Name", "Price", "Seat", "TypeOfVehicles", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 19, 4, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5368), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5369), "Mercedes Benz S Class", 250.0, 5, "Large Executive Luxury Car", "System" },
-                    { 20, 4, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5371), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5372), "Porsche Panamera", 250.0, 5, "Large Executive Luxury Car", "System" },
-                    { 21, 3, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5373), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5374), "Nissan Kicks", 120.0, 5, "Compact SUV", "System" },
-                    { 22, 4, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5376), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5376), "Nissan Rogue", 150.0, 5, "MidSize SUV", "System" },
-                    { 23, 5, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5378), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5379), "Ford Edge ", 180.0, 5, "Standard SUV", "System" },
-                    { 24, 3, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5380), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5381), "Chevrolet Tahoe ", 200.0, 7, "Full Size SUV", "System" },
-                    { 25, 3, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5382), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5383), "Infiniti QX80", 250.0, 7, "Luxury SUV", "System" },
-                    { 29, 7, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5392), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5393), "Chevy Suburban", 220.0, 8, "Premium SUV", "System" },
-                    { 27, 3, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5387), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5388), "Volkswagen Atlas", 180.0, 7, "Premium Crossover", "System" },
-                    { 28, 3, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5389), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5390), "Mercedes Benz GLE", 220.0, 5, "Luxury Elite SUV", "System" },
-                    { 18, 4, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5366), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5367), "BMW 7 Series", 250.0, 5, "Large Executive Luxury Car", "System" },
-                    { 30, 4, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5394), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5395), "BMW X3 ", 250.0, 5, "Premium Elite SUV", "System" },
-                    { 31, 5, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5396), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5397), "Chrysler Pacifica ", 200.0, 7, "7 Passenger Minivan", "System" },
-                    { 32, 5, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5479), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5480), "Toyota Sienna", 220.0, 8, "8 Passenger Minivan", "System" },
-                    { 26, 3, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5385), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5386), "Cadillac XT4", 180.0, 5, "Standard Elite SUV", "System" },
-                    { 17, 3, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5363), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5364), "Mercedes AMG E53", 200.0, 5, "Executive Luxury Car", "System" },
-                    { 13, 4, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5354), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5355), "BMW 5 Series ", 180.0, 5, "Premium Elite Car", "System" },
-                    { 15, 4, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5359), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5360), "Chrysler 300", 190.0, 5, "Luxury Car", "System" },
-                    { 1, 2, "System", new DateTime(2022, 2, 6, 16, 39, 15, 288, DateTimeKind.Local).AddTicks(5338), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(4443), "Mitsubishi Mirage", 40.0, 4, "Economy Car", "System" },
-                    { 2, 2, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5321), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5326), "Nissan Versa", 60.0, 5, "Compact Car", "System" },
-                    { 3, 3, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5330), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5331), "Toyota Corolla", 75.0, 5, "MidSize Car", "System" },
-                    { 4, 3, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5332), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5333), "Volkswagen Jetta", 80.0, 5, "Standard Car", "System" },
-                    { 5, 4, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5334), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5335), "Chevy Malibu", 85.0, 5, "Full Size Car", "System" },
-                    { 6, 2, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5337), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5338), "Ford Mustang Convertible", 90.0, 4, "Convertible Car", "System" },
-                    { 16, 3, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5361), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5362), "Maserati Ghibli", 190.0, 5, "Executive Luxury Car", "System" },
-                    { 7, 2, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5339), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5340), "Dodge Challenger", 120.0, 4, "Sporty Car", "System" },
-                    { 9, 2, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5344), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5345), " Audi A5 Sportback", 180.0, 5, "Full Size Elite Car", "System" },
-                    { 10, 2, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5347), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5348), "BMW 228i Gran Coupe", 180.0, 5, "Standard Elite Car", "System" },
-                    { 11, 4, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5349), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5350), "Tesla Model S", 180.0, 5, "Luxury Elite Electric Car", "System" },
-                    { 12, 4, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5352), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5353), "Chevrolet Impala", 180.0, 5, "Premium Special Car", "System" },
-                    { 33, 12, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5482), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5483), "Ford Transit Wagon", 230.0, 12, "12 Passenger Van", "System" },
-                    { 14, 4, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5356), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5357), "Nissan Maxima ", 180.0, 5, "Premium Car", "System" },
-                    { 8, 2, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5342), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5343), "INFINITI Q50", 150.0, 5, "Full Size Elite Car", "System" },
-                    { 34, 2, "System", new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5484), new DateTime(2022, 2, 6, 16, 39, 15, 289, DateTimeKind.Local).AddTicks(5485), "Ford Transit Wagon", 250.0, 15, "15 Passenger Van", "System" }
+                    { 19, 4, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1323), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1324), "Mercedes Benz S Class", 250.0, 5, "Large Executive Luxury Car", "System" },
+                    { 20, 4, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1325), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1326), "Porsche Panamera", 250.0, 5, "Large Executive Luxury Car", "System" },
+                    { 21, 3, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1328), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1329), "Nissan Kicks", 120.0, 5, "Compact SUV", "System" },
+                    { 22, 4, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1330), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1331), "Nissan Rogue", 150.0, 5, "MidSize SUV", "System" },
+                    { 23, 5, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1336), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1337), "Ford Edge ", 180.0, 5, "Standard SUV", "System" },
+                    { 24, 3, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1338), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1339), "Chevrolet Tahoe ", 200.0, 7, "Full Size SUV", "System" },
+                    { 25, 3, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1340), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1341), "Infiniti QX80", 250.0, 7, "Luxury SUV", "System" },
+                    { 29, 7, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1349), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1350), "Chevy Suburban", 220.0, 8, "Premium SUV", "System" },
+                    { 27, 3, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1345), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1346), "Volkswagen Atlas", 180.0, 7, "Premium Crossover", "System" },
+                    { 28, 3, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1347), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1348), "Mercedes Benz GLE", 220.0, 5, "Luxury Elite SUV", "System" },
+                    { 18, 4, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1321), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1321), "BMW 7 Series", 250.0, 5, "Large Executive Luxury Car", "System" },
+                    { 30, 4, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1352), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1352), "BMW X3 ", 250.0, 5, "Premium Elite SUV", "System" },
+                    { 31, 5, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1354), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1355), "Chrysler Pacifica ", 200.0, 7, "7 Passenger Minivan", "System" },
+                    { 32, 5, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1356), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1357), "Toyota Sienna", 220.0, 8, "8 Passenger Minivan", "System" },
+                    { 26, 3, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1342), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1343), "Cadillac XT4", 180.0, 5, "Standard Elite SUV", "System" },
+                    { 17, 3, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1318), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1319), "Mercedes AMG E53", 200.0, 5, "Executive Luxury Car", "System" },
+                    { 13, 4, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1309), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1310), "BMW 5 Series ", 180.0, 5, "Premium Elite Car", "System" },
+                    { 15, 4, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1314), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1315), "Chrysler 300", 190.0, 5, "Luxury Car", "System" },
+                    { 1, 2, "System", new DateTime(2022, 2, 7, 14, 56, 20, 282, DateTimeKind.Local).AddTicks(1715), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(430), "Mitsubishi Mirage", 40.0, 4, "Economy Car", "System" },
+                    { 2, 2, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1277), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1282), "Nissan Versa", 60.0, 5, "Compact Car", "System" },
+                    { 3, 3, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1285), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1286), "Toyota Corolla", 75.0, 5, "MidSize Car", "System" },
+                    { 4, 3, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1287), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1288), "Volkswagen Jetta", 80.0, 5, "Standard Car", "System" },
+                    { 5, 4, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1289), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1290), "Chevy Malibu", 85.0, 5, "Full Size Car", "System" },
+                    { 6, 2, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1292), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1293), "Ford Mustang Convertible", 90.0, 4, "Convertible Car", "System" },
+                    { 16, 3, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1316), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1317), "Maserati Ghibli", 190.0, 5, "Executive Luxury Car", "System" },
+                    { 7, 2, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1294), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1295), "Dodge Challenger", 120.0, 4, "Sporty Car", "System" },
+                    { 9, 2, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1299), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1300), " Audi A5 Sportback", 180.0, 5, "Full Size Elite Car", "System" },
+                    { 10, 2, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1302), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1303), "BMW 228i Gran Coupe", 180.0, 5, "Standard Elite Car", "System" },
+                    { 11, 4, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1304), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1305), "Tesla Model S", 180.0, 5, "Luxury Elite Electric Car", "System" },
+                    { 12, 4, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1307), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1308), "Chevrolet Impala", 180.0, 5, "Premium Special Car", "System" },
+                    { 33, 12, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1358), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1359), "Ford Transit Wagon", 230.0, 12, "12 Passenger Van", "System" },
+                    { 14, 4, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1312), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1312), "Nissan Maxima ", 180.0, 5, "Premium Car", "System" },
+                    { 8, 2, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1296), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1297), "INFINITI Q50", 150.0, 5, "Full Size Elite Car", "System" },
+                    { 34, 2, "System", new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1361), new DateTime(2022, 2, 7, 14, 56, 20, 283, DateTimeKind.Local).AddTicks(1361), "Ford Transit Wagon", 250.0, 15, "15 Passenger Van", "System" }
                 });
 
             migrationBuilder.InsertData(
@@ -460,16 +438,6 @@ namespace project.Server.Migrations
                 column: "FlightsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FlightBooking_GoingToId",
-                table: "FlightBooking",
-                column: "GoingToId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FlightBooking_PriceId",
-                table: "FlightBooking",
-                column: "PriceId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_PersistedGrants_Expiration",
                 table: "PersistedGrants",
                 column: "Expiration");
@@ -485,14 +453,9 @@ namespace project.Server.Migrations
                 columns: new[] { "SubjectId", "SessionId", "Type" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_VehicleBooking_PriceId",
+                name: "IX_VehicleBooking_VehiclesId",
                 table: "VehicleBooking",
-                column: "PriceId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_VehicleBooking_TypeOfVehicleId",
-                table: "VehicleBooking",
-                column: "TypeOfVehicleId");
+                column: "VehiclesId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

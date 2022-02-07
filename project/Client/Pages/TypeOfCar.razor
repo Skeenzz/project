@@ -14,7 +14,7 @@
     <div class="form-group">
         <label>Vehicle: </label>
         <div>
-            <InputSelect @bind-Value="bookingd.TypeOfVehicleId" class="form-control">
+            <InputSelect @bind-Value="bookingd.VehiclesId" class="form-control">
                 <option value="">-- Select Vehicle --</option>
                 @if (typeofVehicle != null)
                 {
@@ -24,7 +24,7 @@
                     }
                 }
             </InputSelect>
-            <ValidationMessage For="@(() => bookingd.TypeOfVehicleId)" />
+            <ValidationMessage For="@(() => bookingd.VehiclesId)" />
         </div>
     </div>
     

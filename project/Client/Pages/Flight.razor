@@ -9,7 +9,7 @@
 
 <h3>Flights</h3>
 
-<h5><button class="btn btn-primary" @onclick="Index">Home</button> <button class="btn btn-primary" @onclick="Car">Car</button> <button class="btn btn-primary" @onclick="Packages">Packages</button> <button class="btn btn-primary" @onclick="traveltip">travel tip</button></h5>
+<h5><button class="btn btn-primary" @onclick="Index">Home</button> <button class="btn btn-primary" @onclick="VehicleMenu">Car</button> <button class="btn btn-primary" @onclick="Packages">Packages</button> <button class="btn btn-primary" @onclick="Traveltip">Travel tip</button></h5>
 
 <EditForm Model="@booking" OnValidSubmit="CreateBooking">
     <DataAnnotationsValidator />
@@ -18,7 +18,7 @@
     <div class="form-group">
         <label>Destination: </label>
         <div>
-            <InputSelect @bind-Value="booking.FlightId" class="form-control">
+            <InputSelect @bind-Value="booking.FlightsId" class="form-control">
                 <option value="">-- Select GoingToId --</option>
                 @if (flights != null)
                 {
@@ -28,7 +28,7 @@
                     }
                 }
             </InputSelect>
-            <ValidationMessage For="@(() => booking.FlightId)" />
+            <ValidationMessage For="@(() => booking.FlightsId)" />
         </div>
     </div>
     
@@ -54,7 +54,7 @@
         </div>
     </div>
     <button type="submit" class="btn btn-success btn-block">
-        Payment
+        Book
     </button>
 </EditForm>
 
@@ -69,7 +69,8 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>Going To</th>
+                <th>Departure</th>
+                <th>Destination</th>
                 <th>Price</th>
             </tr>
         </thead>
@@ -77,6 +78,7 @@ else
             @foreach (var flights in flight)
              {
                 <tr>
+                    <td>Singapore</td>
                     <td>@flights.GoingTo</td>
                     <td>@flights.Price</td>
 
@@ -105,7 +107,7 @@ else
     private async Task CreateBooking()
     {
         await _client.PostAsJsonAsync(Endpoints.FlightBookingEndpoint, booking);
-        NavigationManager.NavigateTo("/payment");
+        NavigationManager.NavigateTo("/Booking");
 
     }
 
@@ -113,20 +115,20 @@ else
     {
         NavigationManager.NavigateTo("/");
     }
-    private void traveltip(MouseEventArgs e)
+    private void Traveltip(MouseEventArgs e)
     {
         NavigationManager.NavigateTo("/TravelTip");
     }
-    private void Car(MouseEventArgs e)
+    private void VehicleMenu(MouseEventArgs e)
     {
-        NavigationManager.NavigateTo("TypeOfCar");
+        NavigationManager.NavigateTo("VehicleMenu");
     }
     private void Packages(MouseEventArgs e)
     {
         NavigationManager.NavigateTo("Packages");
     }
-    private void Payment(MouseEventArgs e)
+    private void Booking(MouseEventArgs e)
     {
-        NavigationManager.NavigateTo("Payment");
+        NavigationManager.NavigateTo("Booking");
     }
 }
