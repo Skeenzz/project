@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using project.Shared.Domain;
 using project.Server.Configurations.Entities;
+using project.Server.Domain;
 
 namespace project.Server.Data
 {
@@ -20,12 +21,20 @@ namespace project.Server.Data
         {
         }
         public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Flights> Flights { get; set; }
         public DbSet<Payment> Card { get; set; }
+
+        public DbSet<Payment> PaymentConfirmation { get; set; }
         public DbSet<FlightBooking> FlightBooking { get; set; }
         public DbSet<VehicleBooking> VehicleBooking { get; set; }
-        public DbSet<Flights> Flights { get; set; }
+       
         public DbSet<Package> Packages { get; set; }
-        public DbSet<PackageBooking> PackageBookings { get; set; }
+
+         public DbSet<PackageBooking> PackageBookings { get; set; }
+       
+      
+        public DbSet<CustomerFeedBack> CFBack { get; set; }
+       
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -45,6 +54,8 @@ namespace project.Server.Data
             builder.ApplyConfiguration(new UserRoleSeedConfiguration());
 
             builder.ApplyConfiguration(new PackageSeedConfiguration());
+
+
         }
 
     }

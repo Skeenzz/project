@@ -20,6 +20,7 @@ namespace project.Shared.Domain
         [Required]
         public int Capacity { get; set; }
         [Required]
+        [DataType(DataType.Currency)]
         public double Price { get; set; }
         [Required]
         public string Babyfriendly { get; set; }

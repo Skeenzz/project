@@ -14,6 +14,7 @@ namespace project.Shared.Domain
         public string GoingTo { get; set; }
         public string imgName_flight { get; set; }
         [Required]
+        [DataType(DataType.Currency)]
         public double Price { get; set; }
     }
 }
