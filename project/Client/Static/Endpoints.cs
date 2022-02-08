@@ -14,5 +14,7 @@ namespace project.Client.Static
         public static readonly string TypeOfVehiclesEndpoint = $"{Prefix}/TypeOfVehicle";
         public static readonly string CardEndpoint = $"{Prefix}/Card";
         public static readonly string AccountsEndpoint = $"{Prefix}/accounts";
+        public static readonly string PackagesEndpoint = $"{Prefix}/Package";
+        public static readonly string PackageBookingEndpoint = $"{Prefix}/PackageBooking";
     }
 }

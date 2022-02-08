@@ -18,6 +18,7 @@ namespace project.Server.Configurations.Entities
                     Id = 1,
                     PackageName = "something",
                     PackageCapacity = 4,
+                    Price = 80,
                 }
             );
         }
