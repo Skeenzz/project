@@ -1,0 +1,72 @@
+﻿@inject HttpClient _client
+
+<EditForm Model="@Flightbooking" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Destination: </label>
+            <div>
+                <InputSelect @bind-Value="Flightbooking.FlightsId" class="form-control">
+                    <option value="">-- Select GoingToId --</option>
+                    @if (flight != null)
+                    {
+                        foreach (var GoingTo in flight)
+                        {
+                            <option value="@GoingTo.Id">@GoingTo.GoingTo</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => Flightbooking.FlightsId)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Amount of Passenger: </label>
+            <div>
+                <InputNumber @bind-Value="@Flightbooking.Passenger" class="form-control" />
+                <ValidationMessage For="@(() => Flightbooking.Passenger)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Date: </label>
+            <div>
+                <InputDate @bind-Value="@Flightbooking.Departing" class="form-control" />
+                <ValidationMessage For="@(() => Flightbooking.Departing)" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Time: </label>
+            <div>
+                <InputDate @bind-Value="@Flightbooking.Returning" class="form-control" />
+                <ValidationMessage For="@(() => Flightbooking.Returning)" />
+            </div>
+        </div>
+    </fieldset>
+
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
+    <project.Client.Components.BackToList Target="FlightsBooking" />
+
+
+</EditForm>
+
+@code { 
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public FlightBooking Flightbooking { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private IList<FlightBooking> flightbooking;
+    private IList<Flights> flight;
+
+    protected async override Task OnInitializedAsync()
+    {
+        flightbooking = await _client.GetFromJsonAsync<List<FlightBooking>>($"{Endpoints.FlightBookingEndpoint}");
+        flight = await _client.GetFromJsonAsync<List<Flights>>($"{Endpoints.FlightsEndpoint}");
+    }
+}

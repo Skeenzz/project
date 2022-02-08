@@ -1,0 +1,54 @@
+﻿@page "/TravelTip"
+@inject NavigationManager NavigationManager
+
+<h3>TravelTip</h3>
+
+
+
+<body>
+    <div class="row">
+        <div class="row-md-4">
+            <br>
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.Destination">Activities to do at destination</label>
+                <input asp-for="Input.Destination" class="form-control" />
+                <span asp-validation-for="Input.Destination" class="text-danger"></span>
+            </div>
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.TraveltiptimedateFrom">Form</label>
+                <input asp-for="Input.TraveltiptimedateFrom" class="form-control" />
+                <span asp-validation-for="Input.TraveltiptimedateFrom" class="text-danger"></span>
+            </div>
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Input.TraveltiptimedateTo">To</label>
+                <input asp-for="Input.TraveltiptimedateTo" class="form-control" />
+                <span asp-validation-for="Input.TraveltiptimedateTo" class="text-danger"></span>
+            </div>
+
+        </div>
+    </div>
+</body>
+@code {
+    private void Index(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("/");
+    }
+    private void flights(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Flights");
+    }
+    private void Car(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Car");
+    }
+    private void Packages(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Packages");
+    }
+}

@@ -1,0 +1,147 @@
+﻿@page "/Flight/"
+@inject NavigationManager NavigationManager
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+
+
+
+<h3>Flights</h3>
+
+<a href="/flights/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Flights
+</a>
+<br />
+<br />
+
+<iframe src="https://www.google.com/maps/" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+<EditForm Model="@booking" OnValidSubmit="CreateBooking">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Destination: </label>
+        <div>
+            <InputSelect @bind-Value="booking.FlightsId" class="form-control">
+                <option value="">-- Select GoingToId --</option>
+                @if (flights != null)
+                {
+                    foreach (var GoingTo in flights)
+                    {
+                        <option value="@GoingTo.Id">@GoingTo.GoingTo</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => booking.FlightsId)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Amount of Passenger: </label>
+        <div>
+            <InputNumber @bind-Value="@booking.Passenger" class="form-control" />
+            <ValidationMessage For="@(() => booking.Passenger)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Date: </label>
+        <div>
+            <InputDate @bind-Value="@booking.Departing" class="form-control" />
+            <ValidationMessage For="@(() => booking.Departing)" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Time: </label>
+        <div>
+            <InputDate @bind-Value="@booking.Returning" class="form-control" />
+            <ValidationMessage For="@(() => booking.Returning)" />
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success btn-block">
+        Book
+    </button>
+</EditForm>
+
+
+@if (flight == null)
+{
+    <div class="alert alert-info">Loading Flights...</div>
+}
+
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Departure</th>
+                <th>Destination</th>
+                <th>Image</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var flights in flight)
+            {
+                <tr>
+                    <td>Singapore</td>
+                    <td>@flights.GoingTo</td>
+                    <td>
+                        <img style="width:100px;height:100px" src="@flights.imgName_flight" />
+                    </td>
+                    <td>@flights.Price</td>
+
+                    <td>
+                        <a href="/flights/view/@flights.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/flights/edit/@flights.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="@(() => Delete(flights.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>}
+@code {
+    private List<Flights> flight;
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        flight = await _client.GetFromJsonAsync<List<Flights>>($"{Endpoints.FlightsEndpoint}");
+        flights = await _client.GetFromJsonAsync<List<Flights>>($"{Endpoints.FlightsEndpoint}");
+    }
+
+    FlightBooking booking = new FlightBooking();
+
+    private IList<Flights> flights;
+
+    private async Task CreateBooking()
+    {
+        await _client.PostAsJsonAsync(Endpoints.FlightBookingEndpoint, booking);
+        NavigationManager.NavigateTo("/FlightsBooking");
+
+    }
+    async Task Delete(int flightId)
+    {
+        var fLight = flight.First(q => q.Id == flightId);
+        var confirms = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {fLight.Id}? ");
+        if (confirms)
+        {
+            await _client.DeleteAsync($"{Endpoints.FlightsEndpoint}/{flightId}");
+            await OnInitializedAsync();
+        }
+    }
+
+
+}

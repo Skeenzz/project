@@ -1,0 +1,94 @@
+﻿@inject HttpClient _client
+
+<EditForm Model="@vehicle" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Vehicle Name: </label>
+            <div>
+                <InputText @bind-Value="@vehicle.Name" class="form-control" />
+                <ValidationMessage For="@(() => vehicle.Name)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Type Of Vehicle: </label>
+            <div>
+                <InputText @bind-Value="@vehicle.TypeOfVehicles" class="form-control" />
+                <ValidationMessage For="@(() => vehicle.TypeOfVehicles)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>ImgName: </label>
+            <div>
+                <InputText @bind-Value="@vehicle.imgName" class="form-control" />
+                <ValidationMessage For="@(() => vehicle.imgName)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Number of Seats: </label>
+            <div>
+                <InputNumber @bind-Value="@vehicle.Seat" class="form-control" />
+                <ValidationMessage For="@(() => vehicle.Seat)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Amount of Capacity: </label>
+            <div>
+                <InputNumber @bind-Value="@vehicle.Capacity" class="form-control" />
+                <ValidationMessage For="@(() => vehicle.Capacity)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Price: </label>
+            <div>
+                <InputNumber @bind-Value="@vehicle.Price" class="form-control" />
+                <ValidationMessage For="@(() => vehicle.Price)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Babyfriendly: </label>
+            <div>
+                <InputText @bind-Value="@vehicle.Babyfriendly" class="form-control" />
+                <ValidationMessage For="@(() => vehicle.Babyfriendly)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Petfriendly: </label>
+            <div>
+                <InputText @bind-Value="@vehicle.Petfriendly" class="form-control" />
+                <ValidationMessage For="@(() => vehicle.Petfriendly)" />
+            </div>
+        </div>
+    </fieldset>
+
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
+    <project.Client.Components.BackToList Target="TypeOfCar" />
+
+
+</EditForm>
+
+@code { 
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public Vehicle vehicle { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private IList<Vehicle> Vehicles;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Vehicles = await _client.GetFromJsonAsync<List<Vehicle>>($"{Endpoints.TypeOfVehiclesEndpoint}");
+    } }

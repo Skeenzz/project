@@ -1,0 +1,93 @@
+﻿@page "/PackagesBooking"
+@inject NavigationManager NavigationManager
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<h3>Your Bookings</h3>
+
+
+<button class="btn btn-secondary" @onclick="@BackFlights">
+    <span class="oi oi-plus"></span>
+    Create New Flights Booking
+</button>
+<br />
+<br />
+
+
+<p>Flight Booking</p>
+
+
+@if (PBooking == null)
+{
+    <div class="alert alert-info">Loading Flights...</div>
+}
+
+else
+{
+    <table class="table table-responsive" id="bookingsTable">
+        <thead>
+            <tr>
+                <th>Package</th>
+                <th>Price</th>
+                <th>Address</th>
+                <th>Destination</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var packagebooking in PBooking)
+            {
+                <tr>
+                    <td>Singapore</td>
+                    <td>@packagebooking.packages.PackageName</td>
+                    <td>@packagebooking.packages.Price</td>
+                    <td>@packagebooking.Address</td>
+                    <td>@packagebooking.Destination</td>
+                    <td>@packagebooking.Amount</td>
+
+
+
+                    <td>
+                        <a href="/flightsbooking/edit/@packagebooking.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(() => Delete(packagebooking.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+
+    private List<PackageBooking> PBooking;
+
+    protected async override Task OnInitializedAsync()
+
+    {
+        PBooking = await _client.GetFromJsonAsync<List<PackageBooking>>($"{Endpoints.PackageBookingEndpoint}");
+    }
+
+    async Task Delete(int PackageBookingId)
+    {
+        var packagebookings = PBooking.First(q => q.Id == PackageBookingId);
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {packagebookings.Id}? ");
+        if (confirm)
+        {
+            await _client.DeleteAsync($"{Endpoints.PackageBookingEndpoint}/{PackageBookingId}");
+            await OnInitializedAsync();
+        }
+    }
+
+    void BackFlights(MouseEventArgs e)
+    {
+        NavigationManager.NavigateTo("Packages");
+    }
+
+}
+

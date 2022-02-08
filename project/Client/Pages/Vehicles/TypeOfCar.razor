@@ -1,0 +1,161 @@
+@page "/TypeOfCar/"
+@inject NavigationManager NavigationManager
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+
+<h3>Vehicle Booking</h3>
+<a href="/vehicles/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Vehicle
+</a>
+<br />
+<br />
+
+<iframe src="https://www.google.com/maps/" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+
+<EditForm Model="@bookingd" OnValidSubmit="CreateBookingDetail">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="form-group">
+        <label>Vehicle: </label>
+        <div>
+            <InputSelect @bind-Value="bookingd.VehiclesId" class="form-control">
+                <option value="">-- Select Vehicle --</option>
+                @if (typeofVehicle != null)
+                {
+                    foreach (var typeofvehicle in typeofVehicle)
+                    {
+                        <option value="@typeofvehicle.Id">@typeofvehicle.Name</option>
+                    }
+                }
+            </InputSelect>
+            <ValidationMessage For="@(() => bookingd.VehiclesId)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Destination: </label>
+        <div>
+            <InputText @bind-Value="@bookingd.Destination" class="form-control" />
+            <ValidationMessage For="@(() => bookingd.Destination)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Address: </label>
+        <div>
+            <InputText @bind-Value="@bookingd.Address" class="form-control" />
+            <ValidationMessage For="@(() => bookingd.Address)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Date: </label>
+        <div>
+            <InputDate @bind-Value="@bookingd.Date" class="form-control" />
+            <ValidationMessage For="@(() => bookingd.Date)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Notes to Driver: </label>
+        <div>
+            <InputText @bind-Value="@bookingd.Notes" class="form-control" />
+            <ValidationMessage For="@(() => bookingd.Notes)" />
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block">
+        Book
+    </button>
+</EditForm>
+
+
+@if (typeOfVehicle == null)
+{
+    <div class="alert alert-info">Loading Vehicles...</div> }
+
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Type Of Vehicle</th>
+                <th>vehicle Images</th>
+                <th>Seat</th>
+                <th>Luggage Capacity</th>
+                <th>Price$</th>
+                <th>Baby Friendly</th>
+                <th>Pet Friendly</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var vehicle in typeOfVehicle)
+            {
+                <tr>
+                    <td>@vehicle.Name</td>
+                    <td>
+                        <img style="width:100px;height:100px" src="@vehicle.imgName" />
+                    </td>
+                    <td>@vehicle.TypeOfVehicles</td>
+                    <td>@vehicle.Seat</td>
+                    <td>@vehicle.Capacity </td>
+                    <td>@vehicle.Price</td>
+                    <td>@vehicle.Babyfriendly</td>
+                    <td>@vehicle.Petfriendly</td>
+
+                    <td>
+                        <a href="/vehicles/view/@vehicle.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="/vehicles/edit/@vehicle.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="@(() => Delete(vehicle.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>}
+@code {
+    private List<Vehicle> typeOfVehicle;
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        typeOfVehicle = await _client.GetFromJsonAsync<List<Vehicle>>($"{Endpoints.TypeOfVehiclesEndpoint}");
+        typeofVehicle = await _client.GetFromJsonAsync<List<Vehicle>>($"{Endpoints.TypeOfVehiclesEndpoint}");
+    }
+
+    VehicleBooking bookingd = new VehicleBooking();
+
+    private IList<Vehicle> typeofVehicle;
+
+    private async Task CreateBookingDetail()
+    {
+        await _client.PostAsJsonAsync(Endpoints.VehicleBookingEndpoint, bookingd);
+        NavigationManager.NavigateTo("/VehiclesBooking");
+
+    }
+
+    async Task Delete(int vehicleId)
+    {
+        var vehicle = typeOfVehicle.First(q => q.Id == vehicleId);
+        var confirms = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {vehicle.Id}? ");
+        if (confirms)
+        {
+            await _client.DeleteAsync($"{Endpoints.TypeOfVehiclesEndpoint}/{vehicleId}");
+            await OnInitializedAsync();
+        }
+    }
+}

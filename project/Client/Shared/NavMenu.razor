@@ -1,4 +1,11 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+@inject NavigationManager Navigation
+@inject SignOutSessionStateManager SignOutManager
+
+
+<div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">Welcome!!!</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
@@ -8,6 +15,9 @@
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
 
+
+
+
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
@@ -15,26 +25,20 @@
         </li>
 
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+            <NavLink class="nav-link" href="Accounts/">
+                <span class="oi oi-people" aria-hidden="true"></span> Accounts
             </NavLink>
         </li>
 
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            <NavLink class="nav-link" href="VehicleMenu">
+                <span class="oi oi-compass" aria-hidden="true"></span> Vehicles Menu
             </NavLink>
         </li>
 
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="Car">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Car
-            </NavLink>
-        </li>
-
-        <li class="nav-item px-3">
-            <NavLink class="nav-link" href="Flights">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Flights
+            <NavLink class="nav-link" href="Flight">
+                <span class="oi oi-globe" aria-hidden="true"></span> Flights
             </NavLink>
         </li>
 
@@ -46,7 +50,23 @@
 
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="TravelTip">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> TravelTip
+                <span class="oi oi-lightbulb" aria-hidden="true"></span> TravelTip
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="VehiclesBooking">
+                <span class="oi oi-laptop" aria-hidden="true"></span> Your Vehicle Bookings
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="FlightsBooking">
+                <span class="oi oi-laptop" aria-hidden="true"></span> Your Flight Bookings
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="About">
+                <span class="oi oi-laptop" aria-hidden="true"></span> About
             </NavLink>
         </li>
 
@@ -62,4 +82,5 @@
     {
         collapseNavMenu = !collapseNavMenu;
     }
+    
 }
