@@ -12,6 +12,7 @@ namespace project.Shared.Domain
         
         [Required]
         public string GoingTo { get; set; }
+        public string imgName_flight { get; set; }
         [Required]
         public double Price { get; set; }
     }

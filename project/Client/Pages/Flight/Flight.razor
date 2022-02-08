@@ -10,7 +10,13 @@
 
 <h3>Flights</h3>
 
-<h5><button class="btn btn-primary" @onclick="Index">Home</button> <button class="btn btn-primary" @onclick="VehicleMenu">Car</button> <button class="btn btn-primary" @onclick="Packages">Packages</button> <button class="btn btn-primary" @onclick="Traveltip">Travel tip</button></h5>
+<a href="/flights/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Flights
+</a>
+<br />
+<br />
+
 
 <EditForm Model="@booking" OnValidSubmit="CreateBooking">
     <DataAnnotationsValidator />
@@ -72,6 +78,7 @@ else
             <tr>
                 <th>Departure</th>
                 <th>Destination</th>
+                <th>Image</th>
                 <th>Price</th>
             </tr>
         </thead>
@@ -81,12 +88,25 @@ else
                 <tr>
                     <td>Singapore</td>
                     <td>@flights.GoingTo</td>
+                    <td>
+                        <img style="width:100px;height:100px" src="@flights.imgName_flight" />
+                    </td>
                     <td>@flights.Price</td>
 
                     <td>
-                        <a href="/vehicles/view/@flights.Id" class="btn btn-primary">
+                        <a href="/flights/view/@flights.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
+                    </td>
+                    <td>
+                        <a href="/flights/edit/@flights.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="@(() => Delete(flights.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
                     </td>
                 </tr>
             }
@@ -97,7 +117,7 @@ else
 
     protected async override Task OnInitializedAsync()
     {
-       
+
         flight = await _client.GetFromJsonAsync<List<Flights>>($"{Endpoints.FlightsEndpoint}");
         flights = await _client.GetFromJsonAsync<List<Flights>>($"{Endpoints.FlightsEndpoint}");
     }
@@ -109,30 +129,19 @@ else
     private async Task CreateBooking()
     {
         await _client.PostAsJsonAsync(Endpoints.FlightBookingEndpoint, booking);
-        NavigationManager.NavigateTo("/Booking");
+        NavigationManager.NavigateTo("/FlightsBooking");
 
     }
+    async Task Delete(int flightId)
+    {
+        var fLight = flight.First(q => q.Id == flightId);
+        var confirms = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {fLight.Id}? ");
+        if (confirms)
+        {
+            await _client.DeleteAsync($"{Endpoints.TypeOfVehiclesEndpoint}/{flightId}");
+            await OnInitializedAsync();
+        }
+    }
 
-    private void Index(MouseEventArgs e)
-    {
-        NavigationManager.NavigateTo("/");
-    }
-    private void Traveltip(MouseEventArgs e)
-    {
-        NavigationManager.NavigateTo("/TravelTip");
-    }
-    private void VehicleMenu(MouseEventArgs e)
-    {
-        NavigationManager.NavigateTo("VehicleMenu");
-    }
-    private void Packages(MouseEventArgs e)
-    {
-        NavigationManager.NavigateTo("Packages");
-    }
-    private void Booking(MouseEventArgs e)
-    {
-        NavigationManager.NavigateTo("Booking");
-    }
-    
 
 }

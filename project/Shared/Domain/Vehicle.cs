@@ -14,10 +14,17 @@ namespace project.Shared.Domain
         [Required]
         public string TypeOfVehicles { get; set; }
         [Required]
+        public string imgName { get; set; }
+        [Required]
         public int Seat { get; set; }
         [Required]
         public int Capacity { get; set; }
         [Required]
         public double Price { get; set; }
+        [Required]
+        public string Babyfriendly { get; set; }
+        [Required]
+        public string Petfriendly { get; set; }
+
     }
 }

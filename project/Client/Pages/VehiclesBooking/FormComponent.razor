@@ -1,0 +1,82 @@
+﻿@inject HttpClient _client
+
+<EditForm Model="@Vehiclebooking" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Vehicle: </label>
+            <div>
+                <InputSelect @bind-Value="Vehiclebooking.VehiclesId" class="form-control">
+                    <option value="">-- Select Vehicle --</option>
+                    @if (vehicle != null)
+                    {
+                        foreach (var typeofvehicle in vehicle)
+                        {
+                            <option value="@typeofvehicle.Id">@typeofvehicle.Name</option>
+                        }
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => Vehiclebooking.VehiclesId)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Destination: </label>
+            <div>
+                <InputText @bind-Value="@Vehiclebooking.Destination" class="form-control" />
+                <ValidationMessage For="@(() => Vehiclebooking.Destination)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Address: </label>
+            <div>
+                <InputText @bind-Value="@Vehiclebooking.Address" class="form-control" />
+                <ValidationMessage For="@(() => Vehiclebooking.Address)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Date: </label>
+            <div>
+                <InputDate @bind-Value="@Vehiclebooking.Date" class="form-control" />
+                <ValidationMessage For="@(() => Vehiclebooking.Date)" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Notes to Driver: </label>
+            <div>
+                <InputText @bind-Value="@Vehiclebooking.Notes" class="form-control" />
+                <ValidationMessage For="@(() => Vehiclebooking.Notes)" />
+            </div>
+        </div>
+    </fieldset>
+
+    @if (!Disabled)
+    {
+        <button type="submit" class="btn btn-success btn-block">
+            @ButtonText
+        </button>
+    }
+    <project.Client.Components.BackToList Target="VehiclesBooking" />
+
+
+</EditForm>
+
+@code { 
+    [Parameter] public bool Disabled { get; set; } = false;
+    [Parameter] public VehicleBooking Vehiclebooking { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private IList<VehicleBooking> vehiclebooking;
+    private IList<Vehicle> vehicle;
+
+    protected async override Task OnInitializedAsync()
+    {
+        vehiclebooking = await _client.GetFromJsonAsync<List<VehicleBooking>>($"{Endpoints.VehicleBookingEndpoint}");
+        vehicle = await _client.GetFromJsonAsync<List<Vehicle>>($"{Endpoints.TypeOfVehiclesEndpoint}");
+    }
+}

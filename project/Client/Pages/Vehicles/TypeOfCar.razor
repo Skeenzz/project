@@ -6,7 +6,11 @@
 
 
 <h3>Vehicle Booking</h3>
-<hr />
+<a href="/vehicles/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Vehicle
+</a>
+<br />
 <br />
 
 <EditForm Model="@bookingd" OnValidSubmit="CreateBookingDetail">
@@ -46,26 +50,18 @@
     </div>
 
     <div class="form-group">
-        <label>No.Of Passengers: </label>
-        <div>
-            <InputNumber @bind-Value="@bookingd.Passenger" class="form-control" />
-            <ValidationMessage For="@(() => bookingd.Passenger)" />
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label>No.Of Luggages: </label>
-        <div>
-            <InputNumber @bind-Value="@bookingd.luggage" class="form-control" />
-            <ValidationMessage For="@(() => bookingd.luggage)" />
-        </div>
-    </div>
-
-    <div class="form-group">
         <label>Date: </label>
         <div>
             <InputDate @bind-Value="@bookingd.Date" class="form-control" />
             <ValidationMessage For="@(() => bookingd.Date)" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Notes to Driver: </label>
+        <div>
+            <InputText @bind-Value="@bookingd.Notes" class="form-control" />
+            <ValidationMessage For="@(() => bookingd.Notes)" />
         </div>
     </div>
 
@@ -86,9 +82,12 @@ else
             <tr>
                 <th>Name</th>
                 <th>Type Of Vehicle</th>
+                <th>vehicle Images</th>
                 <th>Seat</th>
                 <th>Luggage Capacity</th>
                 <th>Price$</th>
+                <th>Baby Friendly</th>
+                <th>Pet Friendly</th>
             </tr>
         </thead>
         <tbody>
@@ -96,15 +95,30 @@ else
             {
                 <tr>
                     <td>@vehicle.Name</td>
+                    <td>
+                        <img style="width:100px;height:100px" src="@vehicle.imgName" />
+                    </td>
                     <td>@vehicle.TypeOfVehicles</td>
                     <td>@vehicle.Seat</td>
                     <td>@vehicle.Capacity </td>
                     <td>@vehicle.Price</td>
+                    <td>@vehicle.Babyfriendly</td>
+                    <td>@vehicle.Petfriendly</td>
 
                     <td>
                         <a href="/vehicles/view/@vehicle.Id" class="btn btn-primary">
                             <span class="oi oi-book"></span>
                         </a>
+                    </td>
+                    <td>
+                        <a href="/vehicles/edit/@vehicle.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" @onclick="@(() => Delete(vehicle.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
                     </td>
                 </tr>
             }
@@ -115,7 +129,7 @@ else
 
     protected async override Task OnInitializedAsync()
     {
-       
+
         typeOfVehicle = await _client.GetFromJsonAsync<List<Vehicle>>($"{Endpoints.TypeOfVehiclesEndpoint}");
         typeofVehicle = await _client.GetFromJsonAsync<List<Vehicle>>($"{Endpoints.TypeOfVehiclesEndpoint}");
     }
@@ -127,18 +141,18 @@ else
     private async Task CreateBookingDetail()
     {
         await _client.PostAsJsonAsync(Endpoints.VehicleBookingEndpoint, bookingd);
-        NavigationManager.NavigateTo("/booking");
+        NavigationManager.NavigateTo("/VehiclesBooking");
 
     }
 
-    private void Car(MouseEventArgs e)
+    async Task Delete(int vehicleId)
     {
-        NavigationManager.NavigateTo("Car");
+        var vehicle = typeOfVehicle.First(q => q.Id == vehicleId);
+        var confirms = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {vehicle.Id}? ");
+        if (confirms)
+        {
+            await _client.DeleteAsync($"{Endpoints.TypeOfVehiclesEndpoint}/{vehicleId}");
+            await OnInitializedAsync();
+        }
     }
-    private void Booking(MouseEventArgs e)
-    {
-        NavigationManager.NavigateTo("Booking");
-    }
-  
-
 }
