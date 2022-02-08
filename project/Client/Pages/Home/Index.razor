@@ -41,7 +41,7 @@
 
     <h3>Home</h3>
 
-    <h5><button class="btn btn-primary" @onclick="Car">Car</button> <button class="btn btn-primary" @onclick="Flights">Flights</button> <button class="btn btn-primary" @onclick="Packages">Packages</button>  <button class="btn btn-primary" @onclick="Traveltip">Travel Tip</button> <button class="btn btn-primary" @onclick="Booking">Bookings</button></h5>
+    <h5><button class="btn btn-primary" @onclick="Car">Car</button> <button class="btn btn-primary" @onclick="Flights">Flights</button> <button class="btn btn-primary" @onclick="Packages">Packages</button>  <button class="btn btn-primary" @onclick="Traveltip">Travel Tip</button> <button class="btn btn-primary" @onclick="Booking">Bookings</button ><button class="btn btn-primary" @onclick="map">map</button></h5>
 
     <body>
         <table class="table">
@@ -78,7 +78,9 @@
         {
             NavigationManager.NavigateTo("Booking");
         }
-
-       
+        private void map(MouseEventArgs e)
+        {
+            NavigationManager.NavigateTo("map");
+        }
     }
 
