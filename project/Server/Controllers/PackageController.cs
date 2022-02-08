@@ -13,7 +13,7 @@ namespace project.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FlightsController : ControllerBase
+    public class PackageController : ControllerBase
     {
 
         //Refactored
@@ -22,7 +22,7 @@ namespace project.Server.Controllers
 
         //Refactored
         //private FlightsController(ApplicationDbContext context)
-        public FlightsController(IUnitOfWork unitOfWork)
+        public PackageController(IUnitOfWork unitOfWork)
         {
             //Refactored
             //context = context
@@ -39,40 +39,40 @@ namespace project.Server.Controllers
 
             //Refactored
             //return await _context.Flights.ToListAsync();
-            var flight = await _unitOfWork.Flights.GetAll();
-            return Ok(flight);
+            var package = await _unitOfWork.Package.GetAll();
+            return Ok(package);
         }
 
         // GET: api/Flights/5
         [HttpGet("{id}")]
         //Refactored
         //public async Task<ActionResult<Flights>> GetFlights(int id)
-        public async Task<IActionResult> GetFlights(int id)
+        public async Task<IActionResult> GetPackage(int id)
         {
             //Refactored
             //var flight = await _context.Flights.FindAsync(id);
-            var flight = await _unitOfWork.Flights.Get(q => q.Id == id);
+            var package = await _unitOfWork.Package.Get(q => q.Id == id);
 
-            if (flight == null)
+            if (package == null)
             {
                 return NotFound();
             }
             //Refactored
-            return Ok(flight);
+            return Ok(package);
         }
 
         // PUT: api/Flights/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFlights(int id, Flights flight)
+        public async Task<IActionResult> PutPackage(int id, Package package)
         {
-            if (id != flight.Id)
+            if (id != package.Id)
             {
                 return BadRequest();
             }
             //Refactored
             //_context.Entry(flight).State = EntityState.Modified;
-            _unitOfWork.Flights.Update(flight);
+            _unitOfWork.Package.Update(package);
 
             try
             {
@@ -84,7 +84,7 @@ namespace project.Server.Controllers
             {
                 //Refactored
                 //if (!FlightsExists(id))
-                if (!await FlightsExists(id))
+                if (!await PackageExists(id))
                 {
                     return NotFound();
                 }
@@ -102,26 +102,26 @@ namespace project.Server.Controllers
         // POST: api/Flights
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Flights>> PostFlights(Flights flight)
+        public async Task<ActionResult<Package>> PostPackage(Package package)
         {
             //Refactored
             // _context.Flights.Add(flight);
             //await _context.SaveChangesAsync();
 
-            await _unitOfWork.Flights.Insert(flight);
+            await _unitOfWork.Package.Insert(package);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetFlights", new { id = flight.Id }, flight);
+            return CreatedAtAction("GetFlights", new { id = package.Id }, package);
         }
 
         // DELETE: api/Flights/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFlights(int id)
+        public async Task<IActionResult> DeletePackage(int id)
         {
             //Refactored
             //var flight = await _context.Flights.FindAsync(id);
-            var flight = await _unitOfWork.Flights.Get(q => q.Id == id);
-            if (flight == null)
+            var package = await _unitOfWork.Package.Get(q => q.Id == id);
+            if (package == null)
             {
                 return NotFound();
             }
@@ -130,7 +130,7 @@ namespace project.Server.Controllers
             //_context.Flights.Remove(flight);
             //await _context.SaveChangesAsync();
 
-            await _unitOfWork.Flights.Delete(id);
+            await _unitOfWork.Package.Delete(id);
             await _unitOfWork.Save(HttpContext);
 
             return NoContent();
@@ -138,14 +138,16 @@ namespace project.Server.Controllers
 
         //Refactored
         // private bool FlightsExists(int id)
-        private async Task<bool> FlightsExists(int id)
+        private async Task<bool> PackageExists(int id)
         {
             //Refactored
             // return _context.Flights.Any(e => e.Id == id);
 
-            var flight = await _unitOfWork.Flights.Get(q => q.Id == id);
-            return flight != null;
+            var package = await _unitOfWork.Package.Get(q => q.Id == id);
+            return package != null;
 
         }
     }
 }
+
+

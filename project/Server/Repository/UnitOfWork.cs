@@ -19,8 +19,12 @@ namespace project.Server.Repository
         private IGenericRepository<Vehicle> _vehicle;
         private IGenericRepository<VehicleBooking> _VehicleBooking;
         private IGenericRepository<Flights> _flights;
-        private IGenericRepository<Card> _card;
+        private IGenericRepository<Payment> _Payment;
+        private IGenericRepository<PaymentConfirmation> _PaymentConfirmation;
         private IGenericRepository<FlightBooking> _FlightBooking;
+        private IGenericRepository<Package> _Package;
+        private IGenericRepository<PackageBooking> _PackageBooking;
+
 
         private UserManager<ApplicationUser> _userManager;
         public UnitOfWork(ApplicationDbContext context,
@@ -36,12 +40,16 @@ namespace project.Server.Repository
             => _VehicleBooking ??= new GenericRepository<VehicleBooking>(_context);
         public IGenericRepository<Flights> Flights
             => _flights ??= new GenericRepository<Flights>(_context);
-        public IGenericRepository<Card> Card
-            => _card ??= new GenericRepository<Card>(_context);
+        public IGenericRepository<Payment> Payment
+            => _Payment ??= new GenericRepository<Payment>(_context);
+        public IGenericRepository<PaymentConfirmation> PaymentConfirmation
+           => _PaymentConfirmation ??= new GenericRepository<PaymentConfirmation>(_context);
         public IGenericRepository<FlightBooking> FlightBooking
             => _FlightBooking ??= new GenericRepository<FlightBooking>(_context);
-
-       
+        public IGenericRepository<Package> Package
+            => _Package ??= new GenericRepository<Package>(_context);
+        public IGenericRepository<PackageBooking> PackageBooking
+            => _PackageBooking ??= new GenericRepository<PackageBooking>(_context);
 
         public void Dispose()
         {

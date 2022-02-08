@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace project.Shared.Domain
 {
-    public class Card : BaseDomainModel
+    public class Payment : BaseDomainModel
     {
-        public string CardType { get; set; }
+        public string PaymentType { get; set; }
     }
 }

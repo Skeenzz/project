@@ -9,11 +9,12 @@ using project.Server.Data;
 using project.Shared.Domain;
 using project.Server.IRepository;
 
+
 namespace project.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FlightsController : ControllerBase
+    public class PackageBookingController : ControllerBase
     {
 
         //Refactored
@@ -22,7 +23,7 @@ namespace project.Server.Controllers
 
         //Refactored
         //private FlightsController(ApplicationDbContext context)
-        public FlightsController(IUnitOfWork unitOfWork)
+        public PackageBookingController(IUnitOfWork unitOfWork)
         {
             //Refactored
             //context = context
@@ -39,40 +40,40 @@ namespace project.Server.Controllers
 
             //Refactored
             //return await _context.Flights.ToListAsync();
-            var flight = await _unitOfWork.Flights.GetAll();
-            return Ok(flight);
+            var packageBooking = await _unitOfWork.PackageBooking.GetAll();
+            return Ok(packageBooking);
         }
 
         // GET: api/Flights/5
         [HttpGet("{id}")]
         //Refactored
         //public async Task<ActionResult<Flights>> GetFlights(int id)
-        public async Task<IActionResult> GetFlights(int id)
+        public async Task<IActionResult> GetPackageBooking(int id)
         {
             //Refactored
             //var flight = await _context.Flights.FindAsync(id);
-            var flight = await _unitOfWork.Flights.Get(q => q.Id == id);
+            var packageBooking = await _unitOfWork.PackageBooking.Get(q => q.Id == id);
 
-            if (flight == null)
+            if (packageBooking == null)
             {
                 return NotFound();
             }
             //Refactored
-            return Ok(flight);
+            return Ok(packageBooking);
         }
 
         // PUT: api/Flights/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFlights(int id, Flights flight)
+        public async Task<IActionResult> PutPackageBooking(int id, PackageBooking packageBooking)
         {
-            if (id != flight.Id)
+            if (id != packageBooking.Id)
             {
                 return BadRequest();
             }
             //Refactored
             //_context.Entry(flight).State = EntityState.Modified;
-            _unitOfWork.Flights.Update(flight);
+            _unitOfWork.PackageBooking.Update(packageBooking);
 
             try
             {
@@ -84,7 +85,7 @@ namespace project.Server.Controllers
             {
                 //Refactored
                 //if (!FlightsExists(id))
-                if (!await FlightsExists(id))
+                if (!await PackageBookingExists(id))
                 {
                     return NotFound();
                 }
@@ -102,26 +103,26 @@ namespace project.Server.Controllers
         // POST: api/Flights
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Flights>> PostFlights(Flights flight)
+        public async Task<ActionResult<PackageBooking>> PostPackageBooking(PackageBooking packageBooking)
         {
             //Refactored
             // _context.Flights.Add(flight);
             //await _context.SaveChangesAsync();
 
-            await _unitOfWork.Flights.Insert(flight);
+            await _unitOfWork.PackageBooking.Insert(packageBooking);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetFlights", new { id = flight.Id }, flight);
+            return CreatedAtAction("GetFlights", new { id = packageBooking.Id }, packageBooking);
         }
 
         // DELETE: api/Flights/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFlights(int id)
+        public async Task<IActionResult> DeletePackageBooking(int id)
         {
             //Refactored
             //var flight = await _context.Flights.FindAsync(id);
-            var flight = await _unitOfWork.Flights.Get(q => q.Id == id);
-            if (flight == null)
+            var packageBooking = await _unitOfWork.PackageBooking.Get(q => q.Id == id);
+            if (packageBooking == null)
             {
                 return NotFound();
             }
@@ -130,7 +131,7 @@ namespace project.Server.Controllers
             //_context.Flights.Remove(flight);
             //await _context.SaveChangesAsync();
 
-            await _unitOfWork.Flights.Delete(id);
+            await _unitOfWork.PackageBooking.Delete(id);
             await _unitOfWork.Save(HttpContext);
 
             return NoContent();
@@ -138,14 +139,15 @@ namespace project.Server.Controllers
 
         //Refactored
         // private bool FlightsExists(int id)
-        private async Task<bool> FlightsExists(int id)
+        private async Task<bool> PackageBookingExists(int id)
         {
             //Refactored
             // return _context.Flights.Any(e => e.Id == id);
 
-            var flight = await _unitOfWork.Flights.Get(q => q.Id == id);
-            return flight != null;
+            var packageBooking = await _unitOfWork.PackageBooking.Get(q => q.Id == id);
+            return packageBooking != null;
 
         }
     }
 }
+

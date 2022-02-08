@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using project.Server.Models;
 
-namespace CarRentalManagement.Server.Controllers
+namespace project.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

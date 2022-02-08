@@ -9,7 +9,7 @@ using project.Server.Data;
 using project.Shared.Domain;
 using project.Server.IRepository;
 
-namespace CarRentalManagement.Server.Controllers
+namespace project.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -13,7 +13,7 @@ namespace project.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FlightsController : ControllerBase
+    public class PaymentController : ControllerBase
     {
 
         //Refactored
@@ -21,8 +21,8 @@ namespace project.Server.Controllers
         private readonly IUnitOfWork _unitOfWork;
 
         //Refactored
-        //private FlightsController(ApplicationDbContext context)
-        public FlightsController(IUnitOfWork unitOfWork)
+        //private PaymentController(ApplicationDbContext context)
+        public PaymentController(IUnitOfWork unitOfWork)
         {
             //Refactored
             //context = context
@@ -30,49 +30,49 @@ namespace project.Server.Controllers
         }
 
 
-        // GET: api/Flights
+        // GET: api/Payment
         [HttpGet]
         //Refactored
-        // public async Task<ActionResult<IEnumerable<Flights>>> GetFlights()
-        public async Task<IActionResult> GetFlights()
+        // public async Task<ActionResult<IEnumerable<Payment>>> GetPayment()
+        public async Task<IActionResult> GetPayment()
         {
 
             //Refactored
-            //return await _context.Flights.ToListAsync();
-            var flight = await _unitOfWork.Flights.GetAll();
-            return Ok(flight);
+            //return await _context.Payment.ToListAsync();
+            var payment = await _unitOfWork.Payment.GetAll();
+            return Ok(payment);
         }
 
-        // GET: api/Flights/5
+        // GET: api/Payment/5
         [HttpGet("{id}")]
         //Refactored
-        //public async Task<ActionResult<Flights>> GetFlights(int id)
-        public async Task<IActionResult> GetFlights(int id)
+        //public async Task<ActionResult<Payment>> GetPayment(int id)
+        public async Task<IActionResult> GetPayment(int id)
         {
             //Refactored
-            //var flight = await _context.Flights.FindAsync(id);
-            var flight = await _unitOfWork.Flights.Get(q => q.Id == id);
+            //var payment = await _context.Payment.FindAsync(id);
+            var payment = await _unitOfWork.Payment.Get(q => q.Id == id);
 
-            if (flight == null)
+            if (payment == null)
             {
                 return NotFound();
             }
             //Refactored
-            return Ok(flight);
+            return Ok(payment);
         }
 
-        // PUT: api/Flights/5
+        // PUT: api/Payment/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutFlights(int id, Flights flight)
+        public async Task<IActionResult> PutPayment(int id, Payment payment)
         {
-            if (id != flight.Id)
+            if (id != payment.Id)
             {
                 return BadRequest();
             }
             //Refactored
-            //_context.Entry(flight).State = EntityState.Modified;
-            _unitOfWork.Flights.Update(flight);
+            //_context.Entry(payment).State = EntityState.Modified;
+            _unitOfWork.Payment.Update(payment);
 
             try
             {
@@ -83,8 +83,8 @@ namespace project.Server.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 //Refactored
-                //if (!FlightsExists(id))
-                if (!await FlightsExists(id))
+                //if (!PaymentExists(id))
+                if (!await PaymentExists(id))
                 {
                     return NotFound();
                 }
@@ -99,53 +99,54 @@ namespace project.Server.Controllers
 
 
 
-        // POST: api/Flights
+        // POST: api/Payment
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Flights>> PostFlights(Flights flight)
+        public async Task<ActionResult<Payment>> PostPayment(Payment payment)
         {
             //Refactored
-            // _context.Flights.Add(flight);
+            // _context.Payment.Add(payment);
             //await _context.SaveChangesAsync();
 
-            await _unitOfWork.Flights.Insert(flight);
+            await _unitOfWork.Payment.Insert(payment);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetFlights", new { id = flight.Id }, flight);
+            return CreatedAtAction("GetPayment", new { id = payment.Id }, payment);
         }
 
-        // DELETE: api/Flights/5
+        // DELETE: api/Payment/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteFlights(int id)
+        public async Task<IActionResult> DeletePayment(int id)
         {
             //Refactored
-            //var flight = await _context.Flights.FindAsync(id);
-            var flight = await _unitOfWork.Flights.Get(q => q.Id == id);
-            if (flight == null)
+            //var payment = await _context.Payment.FindAsync(id);
+            var payment = await _unitOfWork.Payment.Get(q => q.Id == id);
+            if (payment == null)
             {
                 return NotFound();
             }
 
             //Refactored
-            //_context.Flights.Remove(flight);
+            //_context.Payment.Remove(payment);
             //await _context.SaveChangesAsync();
 
-            await _unitOfWork.Flights.Delete(id);
+            await _unitOfWork.Payment.Delete(id);
             await _unitOfWork.Save(HttpContext);
 
             return NoContent();
         }
 
         //Refactored
-        // private bool FlightsExists(int id)
-        private async Task<bool> FlightsExists(int id)
+        // private bool PaymentExists(int id)
+        private async Task<bool> PaymentExists(int id)
         {
             //Refactored
-            // return _context.Flights.Any(e => e.Id == id);
+            // return _context.Payment.Any(e => e.Id == id);
 
-            var flight = await _unitOfWork.Flights.Get(q => q.Id == id);
-            return flight != null;
+            var payment = await _unitOfWork.Payment.Get(q => q.Id == id);
+            return payment != null;
 
         }
     }
 }
+
