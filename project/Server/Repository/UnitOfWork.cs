@@ -24,6 +24,7 @@ namespace project.Server.Repository
         private IGenericRepository<FlightBooking> _FlightBooking;
         private IGenericRepository<Package> _Package;
         private IGenericRepository<PackageBooking> _PackageBooking;
+        private IGenericRepository<Reviews> _Reviews;
 
 
         private UserManager<ApplicationUser> _userManager;
@@ -50,7 +51,8 @@ namespace project.Server.Repository
             => _Package ??= new GenericRepository<Package>(_context);
         public IGenericRepository<PackageBooking> PackageBooking
             => _PackageBooking ??= new GenericRepository<PackageBooking>(_context);
-
+        public IGenericRepository<Reviews> Reviews
+            => _Reviews ??= new GenericRepository<Reviews>(_context);
         public void Dispose()
         {
             _context.Dispose();
