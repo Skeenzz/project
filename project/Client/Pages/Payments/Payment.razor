@@ -1,0 +1,46 @@
+﻿@page "/Payment"
+@inject NavigationManager NavigationManager
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+<h3>Payment</h3>
+
+
+@if (payment == null)
+{
+    <div class="alert alert-info">Loading Payment...</div>
+}
+
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Payment type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var payments in payment)
+             {
+                <tr>
+                    <td>@payments.PaymentType</td>
+                </tr>
+
+             }
+        </tbody>
+    </table>}
+
+
+
+@code {
+    private List<Payments> payment;
+
+    protected async override Task OnInitializedAsync()
+    {
+
+        payment = await _client.GetFromJsonAsync<List<Payments>>($"{Endpoints.PaymentEndpoint}");
+    }
+
+
+}

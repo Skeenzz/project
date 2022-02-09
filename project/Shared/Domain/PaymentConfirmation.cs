@@ -9,7 +9,7 @@ namespace project.Shared.Domain
     public class PaymentConfirmation : BaseDomainModel
     {
         public int PaymentId { get; set; }
-        public virtual Payment Payment { get; set; }
+        public virtual Payments Payment { get; set; }
         public int VehiclePriceId { get; set; }
         public virtual VehicleBooking vehiclebooking { get; set; }
         public int FlightPriceId { get; set; }

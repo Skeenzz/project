@@ -152,14 +152,14 @@ namespace project.Server.Migrations
                         new
                         {
                             Id = "ad2bcf0c-20db-474f-8407-5a6b159518ba",
-                            ConcurrencyStamp = "7cfb31e3-c658-4114-9bbb-2cf3c5b55294",
+                            ConcurrencyStamp = "1d41bed3-9019-4ca8-b8c0-5d2a851617d3",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "bd2bcf0c-20db-474f-8407-5a6b159518bb",
-                            ConcurrencyStamp = "daa3b7cd-9f14-4072-9d22-b22158f621d5",
+                            ConcurrencyStamp = "3f68f504-e263-4519-8787-b116586e589a",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -355,7 +355,7 @@ namespace project.Server.Migrations
                         {
                             Id = "3781efa7-66dc-47f0-860f-e506d04102e4",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d796eeda-e0f6-4bab-a36e-fa6062cb71d9",
+                            ConcurrencyStamp = "a4d68425-b500-42be-a91d-f13942a9fa15",
                             Email = "admin@localhost.com",
                             EmailConfirmed = false,
                             FirstName = "Admin",
@@ -363,9 +363,9 @@ namespace project.Server.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAED9EfgjF4RvI3ce4TgLdAUaImgLKXZ6eK5nMIL7jwG0N/zC8qxH1eABJlDE7sN7hYg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBKCdlYpi9dSQO1X6g+dqoFAg0gtHfUrIkWgfBG8Bg/b2/aMu9bXlcf3QuRP7Gdytg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "705ef65e-693a-4fed-a842-e09b24d583db",
+                            SecurityStamp = "2432da1e-c9e4-4abb-90e4-a9df4cdbc210",
                             TwoFactorEnabled = false,
                             UserName = "Admin"
                         });
@@ -447,8 +447,8 @@ namespace project.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 1, 32, 22, 28, DateTimeKind.Local).AddTicks(2611),
-                            DateUpdated = new DateTime(2022, 2, 9, 1, 32, 22, 28, DateTimeKind.Local).AddTicks(2674),
+                            DateCreated = new DateTime(2022, 2, 9, 9, 50, 51, 176, DateTimeKind.Local).AddTicks(7141),
+                            DateUpdated = new DateTime(2022, 2, 9, 9, 50, 51, 176, DateTimeKind.Local).AddTicks(7149),
                             GoingTo = "Japan",
                             Price = 780.0,
                             UpdatedBy = "System",
@@ -458,8 +458,8 @@ namespace project.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 1, 32, 22, 28, DateTimeKind.Local).AddTicks(2694),
-                            DateUpdated = new DateTime(2022, 2, 9, 1, 32, 22, 28, DateTimeKind.Local).AddTicks(2697),
+                            DateCreated = new DateTime(2022, 2, 9, 9, 50, 51, 176, DateTimeKind.Local).AddTicks(7152),
+                            DateUpdated = new DateTime(2022, 2, 9, 9, 50, 51, 176, DateTimeKind.Local).AddTicks(7153),
                             GoingTo = "USA",
                             Price = 1780.0,
                             UpdatedBy = "System",
@@ -469,8 +469,8 @@ namespace project.Server.Migrations
                         {
                             Id = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 1, 32, 22, 28, DateTimeKind.Local).AddTicks(2702),
-                            DateUpdated = new DateTime(2022, 2, 9, 1, 32, 22, 28, DateTimeKind.Local).AddTicks(2704),
+                            DateCreated = new DateTime(2022, 2, 9, 9, 50, 51, 176, DateTimeKind.Local).AddTicks(7155),
+                            DateUpdated = new DateTime(2022, 2, 9, 9, 50, 51, 176, DateTimeKind.Local).AddTicks(7156),
                             GoingTo = "China",
                             Price = 580.0,
                             UpdatedBy = "System",
@@ -548,8 +548,11 @@ namespace project.Server.Migrations
                     b.Property<string>("Destination")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PackageId")
+                    b.Property<int?>("PackageId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("PickUpDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -561,7 +564,7 @@ namespace project.Server.Migrations
                     b.ToTable("PackageBookings");
                 });
 
-            modelBuilder.Entity("project.Shared.Domain.Payment", b =>
+            modelBuilder.Entity("project.Shared.Domain.Payments", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -585,7 +588,7 @@ namespace project.Server.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Card");
+                    b.ToTable("Payments");
 
                     b.HasData(
                         new
@@ -615,6 +618,50 @@ namespace project.Server.Migrations
                             DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PaymentType = "PayPal"
+                        });
+                });
+
+            modelBuilder.Entity("project.Shared.Domain.Reviews", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProfilePic")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("reviews")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Reviews");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "john tan",
+                            ProfilePic = "url",
+                            reviews = "Drives too fast"
                         });
                 });
 
@@ -677,8 +724,8 @@ namespace project.Server.Migrations
                             Babyfriendly = "Yes",
                             Capacity = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 1, 32, 22, 8, DateTimeKind.Local).AddTicks(5929),
-                            DateUpdated = new DateTime(2022, 2, 9, 1, 32, 22, 14, DateTimeKind.Local).AddTicks(5526),
+                            DateCreated = new DateTime(2022, 2, 9, 9, 50, 51, 174, DateTimeKind.Local).AddTicks(2326),
+                            DateUpdated = new DateTime(2022, 2, 9, 9, 50, 51, 175, DateTimeKind.Local).AddTicks(951),
                             Name = "Mitsubishi Mirage",
                             Petfriendly = "Yes",
                             Price = 40.0,
@@ -693,8 +740,8 @@ namespace project.Server.Migrations
                             Babyfriendly = "Yes",
                             Capacity = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 1, 32, 22, 14, DateTimeKind.Local).AddTicks(9218),
-                            DateUpdated = new DateTime(2022, 2, 9, 1, 32, 22, 14, DateTimeKind.Local).AddTicks(9253),
+                            DateCreated = new DateTime(2022, 2, 9, 9, 50, 51, 175, DateTimeKind.Local).AddTicks(1823),
+                            DateUpdated = new DateTime(2022, 2, 9, 9, 50, 51, 175, DateTimeKind.Local).AddTicks(1829),
                             Name = "Nissan Versa",
                             Petfriendly = "No",
                             Price = 60.0,
@@ -709,8 +756,8 @@ namespace project.Server.Migrations
                             Babyfriendly = "Yes",
                             Capacity = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 1, 32, 22, 14, DateTimeKind.Local).AddTicks(9260),
-                            DateUpdated = new DateTime(2022, 2, 9, 1, 32, 22, 14, DateTimeKind.Local).AddTicks(9263),
+                            DateCreated = new DateTime(2022, 2, 9, 9, 50, 51, 175, DateTimeKind.Local).AddTicks(1831),
+                            DateUpdated = new DateTime(2022, 2, 9, 9, 50, 51, 175, DateTimeKind.Local).AddTicks(1832),
                             Name = "Toyota Corolla",
                             Petfriendly = "Yes",
                             Price = 75.0,
@@ -725,8 +772,8 @@ namespace project.Server.Migrations
                             Babyfriendly = "Yes",
                             Capacity = 3,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 1, 32, 22, 14, DateTimeKind.Local).AddTicks(9268),
-                            DateUpdated = new DateTime(2022, 2, 9, 1, 32, 22, 14, DateTimeKind.Local).AddTicks(9271),
+                            DateCreated = new DateTime(2022, 2, 9, 9, 50, 51, 175, DateTimeKind.Local).AddTicks(1834),
+                            DateUpdated = new DateTime(2022, 2, 9, 9, 50, 51, 175, DateTimeKind.Local).AddTicks(1835),
                             Name = "Volkswagen Jetta",
                             Petfriendly = "Yes",
                             Price = 80.0,
@@ -741,8 +788,8 @@ namespace project.Server.Migrations
                             Babyfriendly = "Yes",
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2022, 2, 9, 1, 32, 22, 14, DateTimeKind.Local).AddTicks(9276),
-                            DateUpdated = new DateTime(2022, 2, 9, 1, 32, 22, 14, DateTimeKind.Local).AddTicks(9279),
+                            DateCreated = new DateTime(2022, 2, 9, 9, 50, 51, 175, DateTimeKind.Local).AddTicks(1836),
+                            DateUpdated = new DateTime(2022, 2, 9, 9, 50, 51, 175, DateTimeKind.Local).AddTicks(1837),
                             Name = "Chevy Malibu",
                             Petfriendly = "Yes",
                             Price = 85.0,
@@ -862,9 +909,7 @@ namespace project.Server.Migrations
                 {
                     b.HasOne("project.Shared.Domain.Package", "packages")
                         .WithMany()
-                        .HasForeignKey("PackageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PackageId");
 
                     b.Navigation("packages");
                 });

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System.ComponentModel.DataAnnotations;
+using System;
 namespace project.Shared.Domain
 {
     public class Package : BaseDomainModel
@@ -14,6 +9,7 @@ namespace project.Shared.Domain
         [Required]
         public int PackageCapacity { get; set; }
         [Required]
+        [DataType(DataType.Currency)]
         public int Price { get; set; }
     }
 }

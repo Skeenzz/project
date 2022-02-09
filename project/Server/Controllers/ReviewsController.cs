@@ -13,7 +13,7 @@ namespace project.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PaymentController : ControllerBase
+    public class ReviewsController : ControllerBase
     {
 
         //Refactored
@@ -21,8 +21,8 @@ namespace project.Server.Controllers
         private readonly IUnitOfWork _unitOfWork;
 
         //Refactored
-        //private PaymentController(ApplicationDbContext context)
-        public PaymentController(IUnitOfWork unitOfWork)
+        //private FlightsController(ApplicationDbContext context)
+        public ReviewsController(IUnitOfWork unitOfWork)
         {
             //Refactored
             //context = context
@@ -30,49 +30,49 @@ namespace project.Server.Controllers
         }
 
 
-        // GET: api/Payment
+        // GET: api/Reviews
         [HttpGet]
         //Refactored
-        // public async Task<ActionResult<IEnumerable<Payment>>> GetPayment()
-        public async Task<IActionResult> GetPayment()
+        // public async Task<ActionResult<IEnumerable<Reviews>>> GetFlights()
+        public async Task<IActionResult> GetFlights()
         {
 
             //Refactored
-            //return await _context.Payment.ToListAsync();
-            var payment = await _unitOfWork.Payment.GetAll();
-            return Ok(payment);
+            //return await _context.Reviews.ToListAsync();
+            var review = await _unitOfWork.Reviews.GetAll();
+            return Ok(review);
         }
 
-        // GET: api/Payment/5
+        // GET: api/Reviews/5
         [HttpGet("{id}")]
         //Refactored
-        //public async Task<ActionResult<Payment>> GetPayment(int id)
-        public async Task<IActionResult> GetPayment(int id)
+        //public async Task<ActionResult<Reviews>> GetFlights(int id)
+        public async Task<IActionResult> GetFlights(int id)
         {
             //Refactored
-            //var payment = await _context.Payment.FindAsync(id);
-            var payment = await _unitOfWork.Payment.Get(q => q.Id == id);
+            //var review = await _context.Reviews.FindAsync(id);
+            var review = await _unitOfWork.Reviews.Get(q => q.Id == id);
 
-            if (payment == null)
+            if (review == null)
             {
                 return NotFound();
             }
             //Refactored
-            return Ok(payment);
+            return Ok(review);
         }
 
-        // PUT: api/Payment/5
+        // PUT: api/Reviews/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPayment(int id, Payments payment)
+        public async Task<IActionResult> PutFlights(int id, Reviews review)
         {
-            if (id != payment.Id)
+            if (id != review.Id)
             {
                 return BadRequest();
             }
             //Refactored
-            //_context.Entry(payment).State = EntityState.Modified;
-            _unitOfWork.Payment.Update(payment);
+            //_context.Entry(review).State = EntityState.Modified;
+            _unitOfWork.Reviews.Update(review);
 
             try
             {
@@ -83,8 +83,8 @@ namespace project.Server.Controllers
             catch (DbUpdateConcurrencyException)
             {
                 //Refactored
-                //if (!PaymentExists(id))
-                if (!await PaymentExists(id))
+                //if (!FlightsExists(id))
+                if (!await FlightsExists(id))
                 {
                     return NotFound();
                 }
@@ -99,52 +99,52 @@ namespace project.Server.Controllers
 
 
 
-        // POST: api/Payment
+        // POST: api/Reviews
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Payments>> PostPayment(Payments payment)
+        public async Task<ActionResult<Reviews>> PostFlights(Reviews review)
         {
             //Refactored
-            // _context.Payment.Add(payment);
+            // _context.Reviews.Add(review);
             //await _context.SaveChangesAsync();
 
-            await _unitOfWork.Payment.Insert(payment);
+            await _unitOfWork.Reviews.Insert(review);
             await _unitOfWork.Save(HttpContext);
 
-            return CreatedAtAction("GetPayment", new { id = payment.Id }, payment);
+            return CreatedAtAction("GetFlights", new { id = review.Id }, review);
         }
 
-        // DELETE: api/Payment/5
+        // DELETE: api/Reviews/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePayment(int id)
+        public async Task<IActionResult> DeleteFlights(int id)
         {
             //Refactored
-            //var payment = await _context.Payment.FindAsync(id);
-            var payment = await _unitOfWork.Payment.Get(q => q.Id == id);
-            if (payment == null)
+            //var review = await _context.Reviews.FindAsync(id);
+            var review = await _unitOfWork.Reviews.Get(q => q.Id == id);
+            if (review == null)
             {
                 return NotFound();
             }
 
             //Refactored
-            //_context.Payment.Remove(payment);
+            //_context.Reviews.Remove(review);
             //await _context.SaveChangesAsync();
 
-            await _unitOfWork.Payment.Delete(id);
+            await _unitOfWork.Reviews.Delete(id);
             await _unitOfWork.Save(HttpContext);
 
             return NoContent();
         }
 
         //Refactored
-        // private bool PaymentExists(int id)
-        private async Task<bool> PaymentExists(int id)
+        // private bool FlightsExists(int id)
+        private async Task<bool> FlightsExists(int id)
         {
             //Refactored
-            // return _context.Payment.Any(e => e.Id == id);
+            // return _context.Reviews.Any(e => e.Id == id);
 
-            var payment = await _unitOfWork.Payment.Get(q => q.Id == id);
-            return payment != null;
+            var review = await _unitOfWork.Reviews.Get(q => q.Id == id);
+            return review != null;
 
         }
     }

@@ -1,0 +1,31 @@
+﻿@page "/reviews/create/"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+<h3 class="card-title">Create New Reviews</h3>
+<hr />
+<br />
+
+
+
+<FormComponent ButtonText="Create Reviews" review="review" OnValidSubmit="@CreateReviews" />
+
+@code {
+    Reviews review = new Reviews();
+
+    private IList<Reviews> reviews;
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        reviews = await _client.GetFromJsonAsync<List<Reviews>>($"{Endpoints.ReviewsEndpoint}");
+
+    }
+
+    private async Task CreateReviews()
+    {
+        await _client.PostAsJsonAsync(Endpoints.ReviewsEndpoint, review);
+        _navManager.NavigateTo("/Review/");
+
+    }
+}
+
