@@ -13,7 +13,7 @@ namespace project.Server.IRepository
         IGenericRepository<Vehicle> Vehicle { get; }
         IGenericRepository<VehicleBooking> VehicleBooking { get; }
         IGenericRepository<Flights> Flights { get; }
-        IGenericRepository<Payment> Payment { get; }
+        IGenericRepository<Payments> Payment { get; }
         IGenericRepository<PaymentConfirmation> PaymentConfirmation { get; }
         IGenericRepository<FlightBooking> FlightBooking { get; }
         IGenericRepository<Package> Package { get; }

@@ -64,7 +64,7 @@ namespace project.Server.Controllers
         // PUT: api/Payment/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPayment(int id, Payment payment)
+        public async Task<IActionResult> PutPayment(int id, Payments payment)
         {
             if (id != payment.Id)
             {
@@ -102,7 +102,7 @@ namespace project.Server.Controllers
         // POST: api/Payment
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Payment>> PostPayment(Payment payment)
+        public async Task<ActionResult<Payments>> PostPayment(Payments payment)
         {
             //Refactored
             // _context.Payment.Add(payment);

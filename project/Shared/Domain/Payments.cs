@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace project.Shared.Domain
 {
-    public class Payment : BaseDomainModel
+    public class Payments : BaseDomainModel
     {
         public string PaymentType { get; set; }
     }

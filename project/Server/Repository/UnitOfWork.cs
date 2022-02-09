@@ -19,7 +19,7 @@ namespace project.Server.Repository
         private IGenericRepository<Vehicle> _vehicle;
         private IGenericRepository<VehicleBooking> _VehicleBooking;
         private IGenericRepository<Flights> _flights;
-        private IGenericRepository<Payment> _Payment;
+        private IGenericRepository<Payments> _Payment;
         private IGenericRepository<PaymentConfirmation> _PaymentConfirmation;
         private IGenericRepository<FlightBooking> _FlightBooking;
         private IGenericRepository<Package> _Package;
@@ -41,8 +41,8 @@ namespace project.Server.Repository
             => _VehicleBooking ??= new GenericRepository<VehicleBooking>(_context);
         public IGenericRepository<Flights> Flights
             => _flights ??= new GenericRepository<Flights>(_context);
-        public IGenericRepository<Payment> Payment
-            => _Payment ??= new GenericRepository<Payment>(_context);
+        public IGenericRepository<Payments> Payment
+            => _Payment ??= new GenericRepository<Payments>(_context);
         public IGenericRepository<PaymentConfirmation> PaymentConfirmation
            => _PaymentConfirmation ??= new GenericRepository<PaymentConfirmation>(_context);
         public IGenericRepository<FlightBooking> FlightBooking

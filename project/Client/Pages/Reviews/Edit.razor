@@ -1,0 +1,23 @@
+﻿@page "/reviews/edit/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Edit Flights</h3>
+
+<FormComponent ButtonText="Create Reviews" review="reviews" OnValidSubmit="@EditReviews" />
+
+@code {
+    [Parameter] public int id { get; set; }
+    Reviews reviews = new Reviews();
+
+    protected async override Task OnParametersSetAsync()
+    {
+        reviews = await _client.GetFromJsonAsync<Reviews>($"{Endpoints.ReviewsEndpoint}/{id}");
+    }
+
+    async Task EditReviews()
+    {
+        await _client.PutAsJsonAsync($"{Endpoints.ReviewsEndpoint}/{id}", reviews);
+        _navManager.NavigateTo("/Review/");
+    }
+}
