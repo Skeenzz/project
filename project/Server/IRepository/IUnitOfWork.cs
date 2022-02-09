@@ -18,7 +18,7 @@ namespace project.Server.IRepository
         IGenericRepository<FlightBooking> FlightBooking { get; }
         IGenericRepository<Package> Package { get; }
         IGenericRepository<PackageBooking> PackageBooking { get; }
-
+        IGenericRepository<Reviews> Reviews { get; }
 
     }
 }

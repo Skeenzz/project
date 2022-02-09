@@ -25,6 +25,8 @@ namespace project.Server.Data
         public DbSet<VehicleBooking> VehicleBooking { get; set; }
         public DbSet<Flights> Flights { get; set; }
         public DbSet<Package> Packages { get; set; }
+        public DbSet<Reviews> Reviews { get; set; }
+
         public DbSet<PackageBooking> PackageBookings { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
@@ -45,6 +47,9 @@ namespace project.Server.Data
             builder.ApplyConfiguration(new UserRoleSeedConfiguration());
 
             builder.ApplyConfiguration(new PackageSeedConfiguration());
+
+            builder.ApplyConfiguration(new ReviewsSeedConfiguration());
+
         }
 
     }
