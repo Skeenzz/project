@@ -52,22 +52,11 @@
 
     <h3>Home</h3>
 
-    <h5><button class="btn btn-primary" @onclick="Car">Car</button> <button class="btn btn-primary" @onclick="Flights">Flights</button> <button class="btn btn-primary" @onclick="Packages">Packages</button>  <button class="btn btn-primary" @onclick="Traveltip">Travel Tip</button> <button class="btn btn-primary" @onclick="Booking">Bookings</button ><button class="btn btn-primary" @onclick="map">map</button></h5>
-
-    <body>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>image of the driver</th>
-                    <th>reviews</th>
-                </tr>
-            </thead>
-        </table>
+    <h5><button class="btn btn-primary" @onclick="Car">Vehicles</button> <button class="btn btn-primary" @onclick="Flights">Flights</button> <button class="btn btn-primary" @onclick="Packages">Packages</button>  <button class="btn btn-primary" @onclick="Traveltip">Travel Tips</button> <button class="btn btn-primary" @onclick="Map">Map</button></h5>
 
 
 
 
-    </body>
     @code {
         private void Flights(MouseEventArgs e)
         {
@@ -85,11 +74,7 @@
         {
             NavigationManager.NavigateTo("Packages");
         }
-        private void Booking(MouseEventArgs e)
-        {
-            NavigationManager.NavigateTo("Booking");
-        }
-        private void map(MouseEventArgs e)
+        private void Map(MouseEventArgs e)
         {
             NavigationManager.NavigateTo("map");
         }
